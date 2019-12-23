@@ -9,13 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TrainDeltoid"></activity>
-        <activity android:name=".TrainDeltoidDescription" />
-        <activity android:name=".TrainCenter" />
-        <activity android:name=".TrainLegs" />
-        <activity android:name=".TrainArm" />
-        <activity android:name=".TrainBack" />
-        <activity android:name=".TrainBig" />
+        <activity android:name=".HelpShopActivity"></activity>
+        <activity android:name=".HelpCalendarActivity" />
+        <activity android:name=".HelpTrainActivity" />
+        <activity android:name=".HelpPointActivity" />
+        <activity android:name=".HelpMeasurmentActivity" />
+        <activity android:name=".HelpAccountActivity" />
+        <activity android:name=".TrainDeltoidActivity" />
+        <activity android:name=".TrainDeltoidDescriptionActivity" />
+        <activity android:name=".TrainCenterActivity" />
+        <activity android:name=".TrainLegsActivity" />
+        <activity android:name=".TrainArmActivity" />
+        <activity android:name=".TrainBackActivity" />
+        <activity android:name=".TrainBigActivity" />
         <activity android:name=".TestActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

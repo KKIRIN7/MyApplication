@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class TrainDeltoidDescription extends AppCompatActivity {
+public class HelpShopActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_train_deltoid_description);
+        setContentView(R.layout.activity_help_shop);
     }
 }

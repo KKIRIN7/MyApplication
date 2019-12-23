@@ -18,4 +18,8 @@ public class MenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ShopActivity.class);
         startActivity(intent);
     }
+    public void onClickHelp(View v) {
+        Intent intent = new Intent(this, HelpTrainActivity.class);
+        startActivity(intent);
+    }
 }
