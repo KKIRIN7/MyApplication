@@ -16,7 +16,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/TrainArm" />
+        app:srcCompat="@drawable/train_arm" />
 
     <ImageButton
         android:id="@+id/imageButton5"
