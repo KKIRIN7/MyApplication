@@ -26,4 +26,5 @@ public class MenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, TrainBigActivity.class);
         startActivity(intent);
     }
+
 }
