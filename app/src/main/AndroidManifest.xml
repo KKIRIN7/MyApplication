@@ -9,7 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HelpShopActivity"></activity>
+        <activity android:name=".testcalenderActivity"></activity>
+        <activity android:name=".HelpCalenderActivity" />
+        <activity android:name=".Main2Activity" />
+        <activity android:name=".RecordActivity" />
+        <activity android:name=".IrregularPasswordActivity" />
+        <activity android:name=".InputPasswordActivity" />
+        <activity android:name=".InputMailActivity" />
+        <activity android:name=".CalenderActivity" />
+        <activity android:name=".BlankPasswordActivity" />
+        <activity android:name=".AccountActivity" />
+        <activity android:name=".HelpShopActivity" />
         <activity android:name=".HelpCalendarActivity" />
         <activity android:name=".HelpTrainActivity" />
         <activity android:name=".HelpPointActivity" />
@@ -22,7 +32,7 @@
         <activity android:name=".TrainArmActivity" />
         <activity android:name=".TrainBackActivity" />
         <activity android:name=".TrainBigActivity" />
-        <activity android:name=".ShopMachineActivity"></activity>
+        <activity android:name=".ShopMachineActivity" />
         <activity android:name=".ShopSupplyActivity" />
         <activity android:name=".ApplyCompleteActivity" />
         <activity android:name=".MeasurementTempoActivity" />
