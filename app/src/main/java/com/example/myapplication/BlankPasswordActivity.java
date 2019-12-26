@@ -22,4 +22,5 @@ public class BlankPasswordActivity extends AppCompatActivity {
         Intent intent = new Intent(this, InputPasswordActivity.class);
         startActivity(intent);
     }
+
 }

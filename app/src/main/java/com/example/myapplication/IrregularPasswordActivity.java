@@ -23,4 +23,5 @@ public class IrregularPasswordActivity extends AppCompatActivity {
         Intent intent = new Intent(this, InputPasswordActivity.class);
         startActivity(intent);
     }
+
 }

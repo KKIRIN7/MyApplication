@@ -23,4 +23,5 @@ public class InputMailActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AccountActivity.class);
         startActivity(intent);
     }
+
 }
