@@ -13,6 +13,7 @@ public class BlankPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blank_password);
     }
+
     public void onClick0(View v) {
         Intent intent = new Intent(this, AccountActivity.class);
         startActivity(intent);

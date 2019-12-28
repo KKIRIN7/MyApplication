@@ -20,7 +20,7 @@ public class InputPasswordActivity extends AppCompatActivity {
     }
 
     public void onClick1(View v) {
-        Intent intent = new Intent(this, AccountActivity.class);
+        Intent intent = new Intent(this, InputMailActivity.class);
         startActivity(intent);
     }
 

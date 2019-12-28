@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".hikitugiErrorActivity"></activity>
+        <activity android:name=".CalenderAdapterActivity"></activity>
+        <activity android:name=".hikitugiErrorActivity" />
         <activity android:name=".AccountInputErrorActivity" />
         <activity android:name=".AccountInputActivity" />
         <activity android:name=".startActivity" />
