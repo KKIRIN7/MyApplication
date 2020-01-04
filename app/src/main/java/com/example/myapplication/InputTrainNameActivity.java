@@ -15,16 +15,11 @@ public class InputTrainNameActivity extends AppCompatActivity {
     }
 
     public void onClick0(View v) {
-        Intent intent = new Intent(this, InputTrainNameActivity.class);
-        startActivity(intent);
-    }
-
-    public void onClick1(View v) {
         Intent intent = new Intent(this, MeasurementTimerActivity.class);
         startActivity(intent);
     }
 
-    public void onClick2(View v) {
+    public void onClick1(View v) {
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
     }
