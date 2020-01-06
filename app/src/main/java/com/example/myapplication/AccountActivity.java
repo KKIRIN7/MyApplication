@@ -15,11 +15,15 @@ public class AccountActivity extends AppCompatActivity {
     }
     public void onClick0(View v) {
         Intent intent = new Intent(this, InputPasswordActivity.class);
+        int source = 0;
+        intent.putExtra("source", source);
         startActivity(intent);
     }
 
     public void onClick1(View v) {
         Intent intent = new Intent(this, InputPasswordActivity.class);
+        int source = 1;
+        intent.putExtra("source", source);
         startActivity(intent);
     }
 

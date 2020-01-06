@@ -1,56 +1,54 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
+import android.app.DatePickerDialog;
+import android.icu.util.Calendar;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
-import android.widget.GridView;
-import android.widget.TextView;
+import android.widget.DatePicker;
+import android.widget.EditText;
 
-import com.example.myapplication.AccountActivity;
-import com.example.myapplication.R;
+;
 
-public class CalenderActivity extends AppCompatActivity {
-
-    private TextView titleText;
-    private Button prevButton, nextButton;
-    private CalendarAdapter mCalendarAdapter;
-    private GridView calendarGridView;
+public class Calender2Activity extends AppCompatActivity {
+    //部品の変数
+    EditText showDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calender);
+        setContentView(R.layout.activity_main);
 
-        titleText = findViewById(R.id.titleText);
-        prevButton = findViewById(R.id.prevButton);
+        //部品の取得
+        showDate = (EditText) findViewById(R.id.showDate);
 
-        prevButton.setOnClickListener(new View.OnClickListener() {
+        //EditTextにリスナーをつける
+        showDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCalendarAdapter.prevMonth();
-                titleText.setText(mCalendarAdapter.getTitle());
+                //Calendarインスタンスを取得
+                final Calendar date = Calendar.getInstance();
+
+                //DatePickerDialogインスタンスを取得
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        Calender2Activity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                                //setした日付を取得して表示
+                                showDate.setText(String.format("%d / %02d / %02d", year, month+1, dayOfMonth));
+                            }
+                        },
+                        date.get(Calendar.YEAR),
+                        date.get(Calendar.MONTH),
+                        date.get(Calendar.DATE)
+                );
+
+                //dialogを表示
+                datePickerDialog.show();
+
             }
         });
-        nextButton = findViewById(R.id.nextButton);
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mCalendarAdapter.nextMonth();
-                titleText.setText(mCalendarAdapter.getTitle());
-            }
-        });
-        calendarGridView = findViewById(R.id.calendarGridView);
-        mCalendarAdapter = new CalendarAdapter(this);
-        calendarGridView.setAdapter(mCalendarAdapter);
-        titleText.setText(mCalendarAdapter.getTitle());
-    }
 
-    public void onClick0(View v) {
-        Intent intent = new Intent(this, MenuActivity.class);
-        startActivity(intent);
     }
-
 }

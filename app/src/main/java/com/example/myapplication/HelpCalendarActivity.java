@@ -11,7 +11,7 @@ public class HelpCalendarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_help_calendar);
+        setContentView(R.layout.activity_help_calender);
     }
     public void onClick0(View v) {
         Intent intent = new Intent(this, HelpAccountActivity.class);
