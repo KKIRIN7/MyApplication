@@ -14,7 +14,7 @@ public class startActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
     }
     public void onClick0(View v) {
-        Intent intent = new Intent(this, LoginActivityActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 }

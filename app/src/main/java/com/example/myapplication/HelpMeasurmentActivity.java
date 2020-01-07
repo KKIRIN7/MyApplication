@@ -14,7 +14,7 @@ public class HelpMeasurmentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_help_measurment);
     }
     public void onClick0(View v) {
-        Intent intent = new Intent(this, HelpCalendarActivity.class);
+        Intent intent = new Intent(this, HelpCalenderActivity.class);
         startActivity(intent);
     }
 }

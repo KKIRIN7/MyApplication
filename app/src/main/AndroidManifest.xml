@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CalenderAdapterActivity"></activity>
+        <activity android:name=".HelpCalenderActivity"></activity>
+        <activity android:name=".CalenderAdapterActivity" />
         <activity android:name=".hikitugiErrorActivity" />
         <activity android:name=".AccountInputErrorActivity" />
         <activity android:name=".AccountInputActivity" />
@@ -26,7 +27,6 @@
         <activity android:name=".BlankPasswordActivity" />
         <activity android:name=".AccountActivity" />
         <activity android:name=".HelpShopActivity" />
-        <activity android:name=".HelpCalendarActivity" />
         <activity android:name=".HelpTrainActivity" />
         <activity android:name=".HelpPointActivity" />
         <activity android:name=".HelpMeasurmentActivity" />
