@@ -1,23 +1,24 @@
 package com.example.myapplication;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.DatePickerDialog;
-import android.icu.util.Calendar;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
-;
+import java.util.Calendar;
 
-public class Calender2Activity extends AppCompatActivity {
+public class CalenderActivity extends AppCompatActivity {
     //部品の変数
     EditText showDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_calender);
 
         //部品の取得
         showDate = (EditText) findViewById(R.id.showDate);
@@ -31,7 +32,7 @@ public class Calender2Activity extends AppCompatActivity {
 
                 //DatePickerDialogインスタンスを取得
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        Calender2Activity.this,
+                        CalenderActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -51,4 +52,10 @@ public class Calender2Activity extends AppCompatActivity {
         });
 
     }
+
+    public void onClick0(View v) {
+        Intent intent = new Intent(this, MenuActivity.class);
+        startActivity(intent);
+    }
+
 }
