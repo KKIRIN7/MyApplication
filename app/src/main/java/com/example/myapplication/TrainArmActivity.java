@@ -17,4 +17,8 @@ public class TrainArmActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
     }
+    public void onClick1(View v) {
+        Intent intent = new Intent(this, TrainDeltoidActivity.class);
+        startActivity(intent);
+    }
 }

@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 
 public class TrainCenterActivity extends AppCompatActivity {
@@ -19,7 +18,7 @@ public class TrainCenterActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void onClick1(View v) {
-        Intent intent = new Intent(this, MenuActivity.class);
+        Intent intent = new Intent(this, TrainPectoralisMajorActivity.class);
         startActivity(intent);
     }
     public void onClick2(View v) {
