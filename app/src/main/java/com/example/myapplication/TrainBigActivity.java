@@ -25,4 +25,8 @@ public class TrainBigActivity extends AppCompatActivity {
         Intent intent = new Intent(this, TrainArmActivity.class);
         startActivity(intent);
     }
+    public void onClick4(View v) {
+        Intent intent = new Intent(this, TrainBackActivity.class);
+        startActivity(intent);
+    }
 }
