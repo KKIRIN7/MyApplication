@@ -29,13 +29,7 @@ public class InputPasswordActivity extends AppCompatActivity {
             startActivity(intent);
         }
         if (judge == 1){
-            intent = new Intent(this, InputPasswordActivity.class);
-            int source = 2;
-            intent.putExtra("source", source);
-            startActivity(intent);
-        }
-        if (judge == 2){
-            intent = new Intent(this, AccountActivity.class);
+            intent = new Intent(this, InputNewPasswordActivity.class);
             startActivity(intent);
         }
     }
