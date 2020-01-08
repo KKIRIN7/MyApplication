@@ -26,7 +26,10 @@ public class MenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, TrainBigActivity.class);
         startActivity(intent);
     }
-
+    public void onClick3(View v) {
+        Intent intent = new Intent(this, InputTrainNameActivity.class);
+        startActivity(intent);
+    }
     public void onClick4(View v) {
         Intent intent = new Intent(this, CalenderActivity.class);
         startActivity(intent);
