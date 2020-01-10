@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".InputNewPasswordActivity"></activity>
+        <activity android:name=".DBActivity"></activity>
+        <activity android:name=".InputNewPasswordActivity" />
         <activity android:name=".Input_New_PasswordActivity" />
         <activity android:name=".CalenderAdapterActivity" />
         <activity android:name=".hikitugiErrorActivity" />
