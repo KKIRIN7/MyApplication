@@ -25,7 +25,7 @@
         app:srcCompat="?attr/actionBarDivider" />
 
     <ImageButton
-        android:id="@+id/imageButtonMeasurement7"
+        android:id="@+id/TempoStart"
         android:layout_width="70dp"
         android:layout_height="68dp"
         android:layout_marginStart="8dp"
@@ -43,7 +43,7 @@
         app:srcCompat="?attr/actionBarDivider" />
 
     <ImageButton
-        android:id="@+id/imageButtonMeasurement8"
+        android:id="@+id/TempoStop"
         android:layout_width="69dp"
         android:layout_height="65dp"
         android:layout_marginStart="8dp"
@@ -61,7 +61,7 @@
         app:srcCompat="?attr/actionBarDivider" />
 
     <ImageButton
-        android:id="@+id/imageButtonMeasurement11"
+        android:id="@+id/TempoDown"
         android:layout_width="46dp"
         android:layout_height="47dp"
         android:layout_marginStart="8dp"
@@ -79,7 +79,7 @@
         app:srcCompat="?attr/actionBarDivider" />
 
     <ImageButton
-        android:id="@+id/imageButtonMeasurement12"
+        android:id="@+id/TempoUP"
         android:layout_width="41dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
@@ -145,55 +145,124 @@
         app:srcCompat="@drawable/measurement_tempo" />
 
     <EditText
-        android:id="@+id/editText9"
-        android:layout_width="108dp"
-        android:layout_height="52dp"
+        android:id="@+id/NumberTime"
+        android:layout_width="138dp"
+        android:layout_height="122dp"
         android:ems="10"
-        android:inputType="numberPassword"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="3"
+        android:text="2"
+        android:textSize="80sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.125" />
+        app:layout_constraintVertical_bias="0.499" />
 
-    <EditText
-        android:id="@+id/editText10"
-        android:layout_width="59dp"
-        android:layout_height="52dp"
-        android:ems="10"
-        android:inputType="numberPassword"
+    <TextView
+        android:id="@+id/Tempotrainname"
+        android:layout_width="86dp"
+        android:layout_height="34dp"
+        android:text="TextView"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.241"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.291" />
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="@+id/imageView8"
+        app:layout_constraintTop_toTopOf="@+id/imageView8"
+        app:layout_constraintVertical_bias="0.14" />
 
-    <EditText
-        android:id="@+id/editText11"
-        android:layout_width="103dp"
-        android:layout_height="53dp"
-        android:ems="10"
-        android:inputType="numberPassword"
+    <TextView
+        android:id="@+id/TempoNumber"
+        android:layout_width="34dp"
+        android:layout_height="51dp"
+        android:inputType="number"
+        android:maxLength="1"
+        android:text="1"
+        android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.724"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView8"
+        app:layout_constraintVertical_bias="0.811" />
+
+    <EditText
+        android:id="@+id/TempoSetNumber"
+        android:layout_width="51dp"
+        android:layout_height="62dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="2"
+        android:text="3"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.258"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.289" />
+
+    <EditText
+        android:id="@+id/TempoMinute"
+        android:layout_width="45dp"
+        android:layout_height="62dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="2"
+        android:text="0"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.601"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.289" />
+
+    <TextView
+        android:id="@+id/TimerConma"
+        android:layout_width="15dp"
+        android:layout_height="77dp"
+        android:text=":"
+        android:textSize="45sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.669"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView8"
         app:layout_constraintVertical_bias="0.29" />
 
     <EditText
-        android:id="@+id/editText13"
-        android:layout_width="176dp"
-        android:layout_height="133dp"
+        android:id="@+id/TempoSecond"
+        android:layout_width="46dp"
+        android:layout_height="66dp"
         android:ems="10"
-        android:inputType="time"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="2"
+        android:text="5"
+        android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="@+id/imageView8"
+        app:layout_constraintHorizontal_bias="0.767"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.483" />
+        app:layout_constraintVertical_bias="0.285" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="100dp"
+        android:layout_height="74dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView8"
+        app:layout_constraintHorizontal_bias="0.086"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.103" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
