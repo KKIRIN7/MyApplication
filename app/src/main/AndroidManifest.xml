@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DBActivity"></activity>
+        <activity android:name=".TempoIntervalActivity"></activity>
+        <activity android:name=".TimerSetCountActivity" />
+        <activity android:name=".DBActivity" />
         <activity android:name=".InputNewPasswordActivity" />
         <activity android:name=".Input_New_PasswordActivity" />
         <activity android:name=".CalenderAdapterActivity" />

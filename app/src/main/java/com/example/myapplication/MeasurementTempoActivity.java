@@ -39,8 +39,12 @@ public class MeasurementTempoActivity extends AppCompatActivity {
     }
 
     public void onClick0(View v) {//リセットボタン
-        Intent intent = new Intent(this, MenuActivity.class);
-        startActivity(intent);
+        TextView Tempo = (TextView) findViewById(R.id.TempoNumber);
+        Tempo.setText(String.valueOf(1));
+        ((EditText) findViewById(R.id.NumberTime)).setText("" + 0);
+        ((EditText) findViewById(R.id.TempoSetNumber)).setText("" + 0);
+        ((EditText) findViewById(R.id.TempoMinute)).setText("" + 0);
+        ((EditText) findViewById(R.id.TempoSecond)).setText("" + 0);
     }
 
     public void onClick1(View v) {//スタート
@@ -54,14 +58,27 @@ public class MeasurementTempoActivity extends AppCompatActivity {
         int Int_NumberTime = Integer.parseInt(NumberTime.getText().toString());
         TextView TempoNumber = (TextView) findViewById(R.id.TempoNumber);//テンポの値を取得
         int Int_TempoNumber = Integer.parseInt(TempoNumber.getText().toString());//Int型に変換
-        int numbertime = Int_NumberTime;
-        int set = Int_TempoSetNumber;
-        int front = Int_IntervalMiniute;
-        int back = Int_IntervalSecond;
+       // int numbertime = Int_NumberTime;
+        //int set = Int_TempoSetNumber;
+       // int front = Int_IntervalMiniute;
+       // int back = Int_IntervalSecond;
 
-        Miniute = (numbertime + 1) * 1000;
-        Miniute2 = (front * 60 + back) * 1000; //タイマーの数カウントダウンする
-        int Second = (Int_TempoNumber / 10) * 10;
+       // Miniute = (numbertime + 1) * 1000;
+       // Miniute2 = (front * 60 + back) * 1000; //タイマーの数カウントダウンする
+       // int Second = (Int_TempoNumber / 10) * 10;
+        String set = TempoSetNumber.getText().toString();
+        String front = IntervalMiniute.getText().toString();
+        String back = IntervalSecond.getText().toString();
+        String numbertime = NumberTime.getText().toString();
+
+
+        Intent intent = new Intent(this, TimerSetCountActivity.class);
+        intent.putExtra("Int_TempoSetNumber", set);
+        intent.putExtra("Int_IntervalMiniute", front);
+        intent.putExtra("Int_IntervalSecond", back);
+        intent.putExtra("Int_NumberTime", numbertime);
+        startActivity(intent);
+
 
         //for(count = 0; count < set + 1; count++) {
         //  ((TextView) findViewById(R.id.textView3)).setText("" + count);
@@ -72,7 +89,7 @@ public class MeasurementTempoActivity extends AppCompatActivity {
         //   interval();
         /// }
         //}
-
+/*
         CountDownTimer countDownTimer = new CountDownTimer(Miniute, 1000) {    //回数
             EditText TempoSetNumber = (EditText) findViewById(R.id.TempoSetNumber);//セット数
             int Int_TempoSetNumber = Integer.parseInt(TempoSetNumber.getText().toString());
@@ -106,8 +123,6 @@ public class MeasurementTempoActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 //finish();この画面遷移から抜け
-                //                }
-                //    }.start();
 
                 CountDownTimer countDownTimer2 = new CountDownTimer(Miniute2, 100) {    //インターバル
                     EditText TempoSetNumber = (EditText) findViewById(R.id.TempoSetNumber);//セット数
@@ -136,6 +151,7 @@ public class MeasurementTempoActivity extends AppCompatActivity {
                 }.start();
             }
         }.start();
+    }*/
     }
 
     public void onClick2(View v) {//ストップボタン
