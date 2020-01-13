@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -43,6 +45,7 @@
         <activity android:name=".TrainArmActivity" />
         <activity android:name=".TrainBackActivity" />
         <activity android:name=".TrainBigActivity" />
+        <activity android:name=".ServerActivity" />
         <activity android:name=".ShopMachineActivity" />
         <activity android:name=".ShopSupplyActivity" />
         <activity android:name=".ApplyCompleteActivity" />
