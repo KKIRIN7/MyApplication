@@ -5,13 +5,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 public class AccountActivity extends AppCompatActivity {
 
+    private AWSconnect4 con;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
+
+
+        TextView b = findViewById(R.id.textView6);//渡したいtextviewのidをaに入れる
+        TextView a = findViewById(R.id.textView7);//渡したいtextviewのidをaに入れる
+        TextView c = findViewById(R.id.textView8);//渡したいtextviewのidをaに入れる
+        TextView d = findViewById(R.id.textView9);//渡したいtextviewのidをaに入れる
+        con = new AWSconnect4(a, b, c, d);//idをawsconnectに送る
+        String DBe = new String("http://13.113.228.107/AccountInformationMET.php");//接続するphpファイルの決定
+        String dfaifd = new String("a=12345@gmail.com");//androidstudioからphpに値を送る文字列(phpにはaと設定しているためa=XXXとする)
+        con.execute(DBe, dfaifd);//第一引数にURL、第二引数以降にphpに送りたいものを入れる
     }
     public void onClick0(View v) {
         Intent intent = new Intent(this, InputPasswordActivity.class);
