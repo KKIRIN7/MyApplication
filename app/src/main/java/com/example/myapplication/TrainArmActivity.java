@@ -21,4 +21,12 @@ public class TrainArmActivity extends AppCompatActivity {
         Intent intent = new Intent(this, TrainDeltoidActivity.class);
         startActivity(intent);
     }
+    public void onClick2(View v) {
+        Intent intent = new Intent(this, TrainBicepsActivity.class);
+        startActivity(intent);
+    }
+    public void onClick3(View v) {
+        Intent intent = new Intent(this, TrainTricepsActivity.class);
+        startActivity(intent);
+    }
 }

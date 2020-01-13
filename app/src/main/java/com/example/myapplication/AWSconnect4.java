@@ -21,8 +21,8 @@ public class AWSconnect4 extends AsyncTask<String, Void, String> {
     private TextView textView1;
     private TextView textView2;
     private TextView textView3;
-    private TextView textView4
-            ;
+    private TextView textView4;
+
     public AWSconnect4(TextView textView1 ,TextView textView2 ,TextView textView3 ,TextView textView4) {//textviewを設定する。複数をしたいなら複数分引数などの設定をして
         super();
         this.textView1 = textView1;//textviewにidをいれる
@@ -52,10 +52,25 @@ public class AWSconnect4 extends AsyncTask<String, Void, String> {
         //ダイアログの消去などを行う。
         //doInBackgroundの結果を画面表示に反映させる処理もここに記述。
         String[] test = result.split("," , 0);//phpから受け取ったものを要素ごとに分ける
-        textView1.setText(test[0]);//表示
-        textView2.setText(test[1]);//表示
-        textView3.setText(test[2]);//表示
-        textView4.setText(test[3]);//表示
+        int testlength = test.length;
+        int i = 0;
+        if(i < testlength) {
+            textView1.setText(test[i]);//表示
+            i++;
+        }
+
+        if(i < testlength) {
+            textView2.setText(test[i]);//表示
+            i++;
+        }
+        if(i < testlength) {
+            textView3.setText(test[i]);//表示
+            i++;
+        }
+        if(i < testlength) {
+            textView4.setText(test[i]);//表示
+            i++;
+        }
         //textView.setText("result");
     }
     public static String execute1(String argStrApiUrl, //HashMap<String,String> formItems) {

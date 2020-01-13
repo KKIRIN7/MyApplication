@@ -4,42 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
-
+    tools:context=".TrainTricepsActivity">
     <ImageView
-        android:id="@+id/imageView19"
+        android:id="@+id/imageView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/rogin" />
-
+        app:srcCompat="@drawable/train_triceps" />
     <ImageButton
-        android:id="@+id/imageButtonLogin"
-        android:layout_width="257dp"
-        android:layout_height="85dp"
+        android:id="@+id/imageButtonShopSupply25"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@null"
         android:onClick="onClick0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.951"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.561"
+        app:layout_constraintVertical_bias="0.859"
         app:srcCompat="?attr/actionBarDivider" />
-
-    <ImageButton
-        android:id="@+id/imageButtonLogin2"
-        android:layout_width="209dp"
-        android:layout_height="68dp"
-        android:background="@null"
-        android:onClick="onClick1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.74"
-        app:srcCompat="?attr/actionBarDivider" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

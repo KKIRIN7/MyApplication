@@ -22,7 +22,11 @@ public class TrainCenterActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void onClick2(View v) {
-        Intent intent = new Intent(this, MenuActivity.class);
+        Intent intent = new Intent(this, TrainAbdominalObliquesActivity.class);
+        startActivity(intent);
+    }
+    public void onClick3(View v) {
+        Intent intent = new Intent(this, TrainRectusmuscleActivity.class);
         startActivity(intent);
     }
 }
