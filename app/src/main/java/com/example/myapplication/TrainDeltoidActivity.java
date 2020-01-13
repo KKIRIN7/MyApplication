@@ -10,19 +10,19 @@ import android.widget.TextView;
 
 
 public class TrainDeltoidActivity extends AppCompatActivity {
-  /*  private AWSconnect4 con;
+    private AWSconnect4 con;
     private TextView button1;
     private TextView button2;
     private TextView button3;
     private TextView button4;
 
-   */
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train_deltoid);
-        /* button1 = findViewById(R.id.button1);
+         button1 = findViewById(R.id.button1);
          button2 = findViewById(R.id.button2);
          button3 = findViewById(R.id.button3);
         button4 = findViewById(R.id.button4);
@@ -30,17 +30,23 @@ public class TrainDeltoidActivity extends AppCompatActivity {
         String DBe = new String("http://13.113.228.107/ShowTrainMET.php");//接続するphpファイルの決定
         String dfaifd = new String("a=三角筋");//androidstudioからphpに値を送る文字列(phpにはaと設定しているためa=XXXとする)
         con.execute(DBe, dfaifd);//第一引数にURL、第二引数以降にphpに送りたいものを入れる
-*/
+
     }
     public void onClick0(View v) {
         Intent intent = new Intent(this, TrainDeltoidDescriptionActivity.class);
         startActivity(intent);
     }
-  /*  public void onClick1(View v) {
+    public void onClick1(View v) {
         Intent intent = new Intent(this,TrainDeltoidDescriptionActivity.class);
         String source1 = button1.getText().toString();
         intent.putExtra("source1", source1);
         startActivity(intent);
-    }*/
+    }
+    public void onClick2(View v) {
+        Intent intent = new Intent(this,TrainDeltoidDescriptionActivity.class);
+        String source2 = button2.getText().toString();
+        intent.putExtra("source1", source2);
+        startActivity(intent);
+    }
 
 }

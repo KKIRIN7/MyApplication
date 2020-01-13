@@ -21,5 +21,8 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HikitugiActivity.class);
         startActivity(intent);
     }
-
+    public void onClick2(View v) {
+        Intent intent = new Intent(this, TrainDeltoidDescriptionActivity.class);
+        startActivity(intent);
+    }
 }

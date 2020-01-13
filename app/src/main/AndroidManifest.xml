@@ -15,6 +15,7 @@
         <activity android:name=".TrainHamstringActivity" />
         <activity android:name=".TrainCalfActivity" />
         <activity android:name=".TrainRectusmuscleActivity" />
+        <activity android:name=".TrainPectoralisMajorActivity" />
         <activity android:name=".TrainTricepsActivity" />
         <activity android:name=".TrainBicepsActivity" />
         <activity android:name=".TempoIntervalActivity" />
@@ -40,7 +41,7 @@
         <activity android:name=".AccountActivity" />
         <activity android:name=".HelpShopActivity" />
         <activity android:name=".HikitugiActivity" />
-        <activity android:name=".HelpCalendarActivity" />
+        <activity android:name=".HelpCalenderActivity" />
         <activity android:name=".HelpTrainActivity" />
         <activity android:name=".HelpPointActivity" />
         <activity android:name=".HelpMeasurmentActivity" />
