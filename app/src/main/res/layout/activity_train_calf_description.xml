@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuActivity">
+    tools:context=".TrainCalfDescriptionActivity">
 
     <ImageView
         android:id="@+id/imageView1"
@@ -16,7 +16,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/train_deltoid_description" />
+        app:srcCompat="@drawable/train_calf_description" />
 
     <TextView
         android:id="@+id/textview1"

@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TrainAbdominalObliquesActivity"></activity>
+        <activity android:name=".TrainHamstringDescriptionActivity"></activity>
+        <activity android:name=".TrainCalfDescriptionActivity" />
+        <activity android:name=".TrainLatissimusdorsiActivity" />
+        <activity android:name=".TrainGreatcirclemusculeActivity" />
+        <activity android:name=".TrainButtocksActivity" />
+        <activity android:name=".TrainAbdominalObliquesActivity" />
         <activity android:name=".TrainHamstringActivity" />
         <activity android:name=".TrainCalfActivity" />
         <activity android:name=".TrainRectusmuscleActivity" />
