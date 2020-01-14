@@ -66,6 +66,7 @@
         <activity android:name=".MeasurementTimerActivity" />
         <activity android:name=".ErrorInputTrainNameActivity" />
         <activity android:name=".InputTrainNameActivity" />
+        <activity android:name=".InputTrainNameErrorActivity" />
         <activity android:name=".TestActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
