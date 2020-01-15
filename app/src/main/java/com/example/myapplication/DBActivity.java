@@ -97,8 +97,8 @@ public class DBActivity extends AppCompatActivity {
         Log.d("debug","**********Cursor");
 
         Cursor cursor = db.query(
-                "trainrecorddb",
-                new String[] { "trainname", "setnum" },
+                "informationuserdb",
+                new String[] { "mailaddress", "login" },
                 null,
                 null,
                 null,
@@ -128,9 +128,9 @@ public class DBActivity extends AppCompatActivity {
     private void insertData(SQLiteDatabase db, String com, int price){
 
         ContentValues values = new ContentValues();
-        values.put("trainname", com);
-        values.put("setnum", price);
-        db.insert("trainrecorddb", null, values);
+        values.put("mailaddress", com);
+        values.put("login", price);
+        db.insert("informationuserdb", null, values);
     }
 
     private void alldeleteData(){

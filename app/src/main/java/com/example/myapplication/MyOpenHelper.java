@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+
 public class MyOpenHelper extends SQLiteOpenHelper {
 
     // データーベースのバージョン
@@ -23,6 +24,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
 
     private static final String COLUMN_NAME_TITLE6 = "mailaddress";
     private static final String COLUMN_NAME_TITLE7 = "login";
+
 
     private static final String SQL_CREATE_ENTRIES1 =
             "CREATE TABLE " + TABLE_NAME1 + " (" +
@@ -48,20 +50,16 @@ public class MyOpenHelper extends SQLiteOpenHelper {
 
     MyOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-
     }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
 
         // テーブル作成
         // SQLiteファイルがなければSQLiteファイルが作成される
-        db.execSQL(
-                SQL_CREATE_ENTRIES1
-        );
-        db.execSQL(
-                SQL_CREATE_ENTRIES2
-        );
+        db.execSQL(SQL_CREATE_ENTRIES1);
+        db.execSQL(SQL_CREATE_ENTRIES2);
 
         Log.d("debug", "onCreate(SQLiteDatabase db)");
 
@@ -70,13 +68,9 @@ public class MyOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // アップデートの判別
-        db.execSQL(
-                SQL_DELETE_ENTRIES1
-        );
+        db.execSQL(SQL_DELETE_ENTRIES1);
         onCreate(db);
-        db.execSQL(
-                SQL_DELETE_ENTRIES2
-        );
+        db.execSQL(SQL_DELETE_ENTRIES2);
         onCreate(db);
     }
 
