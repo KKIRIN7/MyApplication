@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TrainHamstringDescriptionActivity"></activity>
+        <activity android:name=".TrainBicepsDescriptionActivity"></activity>
+        <activity android:name=".TrainHamstringDescriptionActivity" />
         <activity android:name=".TrainCalfDescriptionActivity" />
         <activity android:name=".TrainLatissimusdorsiActivity" />
         <activity android:name=".TrainGreatcirclemusculeActivity" />
