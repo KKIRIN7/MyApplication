@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TrainBicepsDescriptionActivity"></activity>
+        <activity android:name=".TrainGluteusMaximusDescriptionActivity"></activity>
+        <activity android:name=".TrainGluteusMaximusActivity" />
+        <activity android:name=".TrainLatissimusdorsiDescriptionActivity" />
+        <activity android:name=".TrainTricepsDescriptionActivity" />
+        <activity android:name=".TrainBicepsDescriptionActivity" />
         <activity android:name=".TrainHamstringDescriptionActivity" />
         <activity android:name=".TrainCalfDescriptionActivity" />
         <activity android:name=".TrainLatissimusdorsiActivity" />

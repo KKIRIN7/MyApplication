@@ -17,5 +17,16 @@ public class TrainBackActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
     }
-
+    public void onClick1(View v) {
+        Intent intent = new Intent(this, TrainLatissimusdorsiActivity.class);
+        startActivity(intent);
+    }
+    public void onClick2(View v) {
+        Intent intent = new Intent(this, MenuActivity.class);
+        startActivity(intent);
+    }
+    public void onClick3(View v) {
+        Intent intent = new Intent(this, TrainGluteusMaximusActivity.class);
+        startActivity(intent);
+    }
 }

@@ -32,19 +32,19 @@ public class TrainHamstringActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void onClick1(View v) {
-        Intent intent = new Intent(this,TrainCalfDescriptionActivity.class);
+        Intent intent = new Intent(this,TrainHamstringDescriptionActivity.class);
         String source1 = button1.getText().toString();
         intent.putExtra("source1", source1);
         startActivity(intent);
     }
     public void onClick2(View v) {
-        Intent intent = new Intent(this,TrainCalfDescriptionActivity.class);
+        Intent intent = new Intent(this,TrainHamstringDescriptionActivity.class);
         String source2 = button2.getText().toString();
         intent.putExtra("source1", source2);
         startActivity(intent);
     }
     public void onClick3(View v) {
-        Intent intent = new Intent(this,TrainCalfDescriptionActivity.class);
+        Intent intent = new Intent(this,TrainHamstringDescriptionActivity.class);
         String source3 = button3.getText().toString();
         intent.putExtra("source1", source3);
         startActivity(intent);

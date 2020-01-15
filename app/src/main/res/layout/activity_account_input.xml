@@ -49,17 +49,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/account_input" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="213dp"
-        android:layout_height="33dp"
-        android:text="TextView"
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="248dp"
+        android:layout_height="46dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintHorizontal_bias="0.57"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView16"
-        app:layout_constraintVertical_bias="0.469" />
+        app:layout_constraintVertical_bias="0.468" />
 
     <EditText
         android:id="@+id/editText6"
