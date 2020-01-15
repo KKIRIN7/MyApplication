@@ -18,11 +18,11 @@ public class TrainBackActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void onClick1(View v) {
-        Intent intent = new Intent(this, TrainLatissimusdorsiActivity.class);
+        Intent intent = new Intent(this, TrainGreatcirclemusculeActivity.class);
         startActivity(intent);
     }
     public void onClick2(View v) {
-        Intent intent = new Intent(this, MenuActivity.class);
+        Intent intent = new Intent(this,TrainLatissimusdorsiActivity.class);
         startActivity(intent);
     }
     public void onClick3(View v) {
