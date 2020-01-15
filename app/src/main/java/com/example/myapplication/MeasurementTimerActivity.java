@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.os.CountDownTimer;
@@ -17,6 +20,12 @@ public class MeasurementTimerActivity extends AppCompatActivity {
     long Miniute = 0;
     int term = 0;
     int stopterm = 0;
+    private AWSconnect1 con;
+    private TextView text;
+    String Point = "29";
+    private MyOpenHelper helper;
+    private SQLiteDatabase db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,18 +109,17 @@ public class MeasurementTimerActivity extends AppCompatActivity {
                         ((TextView) findViewById(R.id.SetNumber)).setText(String.valueOf(Int_TimerSetNumber));
                         ((TextView) findViewById(R.id.TimerCountTimeMiniute)).setText(String.valueOf(Mintime));
                         ((TextView) findViewById(R.id.TimerCountTimeSecond)).setText(String.valueOf(SEctime));
-                    } else if(Int_TimerSetNumber == 0 && Mintime == 0 && SEctime == 0){
-                        Intent intent = new Intent(MeasurementTimerActivity.this, ApplyCompleteActivity.class);
+                    } else if(Int_TimerSetNumber == 0 && Mintime == 0 && SEctime == 0) {
+
+                        //履歴に登録する。
+
+                        Intent intent = new Intent(MeasurementTimerActivity.this, MeasurementTimerEndActivity.class);
                         startActivity(intent);
                     }
                 }
 
                 @Override
                 public void onFinish() {
-                  //  if (Int_TimerSetNumber == 0 && Mintime == 0 && SEctime == 0) {//さらにDBでポイントと比較
-                    //    Intent intent = new Intent(MeasurementTimerActivity.this, ApplyCompleteActivity.class);
-                      //  startActivity(intent);
-                    //} else {
 
                         term = 1;
                         AlertDialog.Builder builder = new AlertDialog.Builder(MeasurementTimerActivity.this);
@@ -120,7 +128,6 @@ public class MeasurementTimerActivity extends AppCompatActivity {
                         AlertDialog dialog = builder.create();
                         dialog.show();
                         stopterm = 0;
-                   // }
                 }
             }.start();
             } else if (term == 1) {

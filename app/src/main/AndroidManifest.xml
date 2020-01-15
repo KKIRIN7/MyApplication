@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".TrainGreatCircleDescriptionActivity"></activity>
+        <activity android:name=".MeasurementTimerEndActivity" />
         <activity android:name=".TrainGluteusMaximusDescriptionActivity" />
         <activity android:name=".TrainGluteusMaximusActivity" />
         <activity android:name=".TrainLatissimusdorsiDescriptionActivity" />
@@ -53,7 +54,6 @@
         <activity android:name=".AccountActivity" />
         <activity android:name=".HelpShopActivity" />
         <activity android:name=".HikitugiActivity" />
-        <activity android:name=".HelpCalenderActivity" />
         <activity android:name=".HelpTrainActivity" />
         <activity android:name=".HelpPointActivity" />
         <activity android:name=".HelpMeasurmentActivity" />
