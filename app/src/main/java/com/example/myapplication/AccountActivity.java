@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+
 public class AccountActivity extends AppCompatActivity {
 
     private AWSconnect4 con;
@@ -24,8 +25,15 @@ public class AccountActivity extends AppCompatActivity {
         String DBe = new String("http://13.113.228.107/AccountInformationMET.php");//接続するphpファイルの決定
         String dfaifd = new String("a=12345@gmail.com");//androidstudioからphpに値を送る文字列(phpにはaと設定しているためa=XXXとする)
         con.execute(DBe, dfaifd);//第一引数にURL、第二引数以降にphpに送りたいものを入れる
+
+
     }
     public void onClick0(View v) {
+        TextView a = findViewById(R.id.textView7);//渡したいtextviewのidをaに入れる
+        TextView b = findViewById(R.id.textView6);//渡したいtextviewのidをaに入れる
+        String asd = a.getText().toString();
+        b.setText(asd);
+
         Intent intent = new Intent(this, InputPasswordActivity.class);
         int source = 0;
         intent.putExtra("source", source);
