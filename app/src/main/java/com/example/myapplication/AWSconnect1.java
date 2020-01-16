@@ -19,7 +19,6 @@ public class AWSconnect1 extends AsyncTask<String, Void, String> {
     public AWSconnect1(TextView textView) {//textviewを設定する。複数をしたいなら複数分引数などの設定をして
         super();
         this.textView = textView;//textviewにidをいれる
-
     }
     @Override
     protected void onPreExecute() {
