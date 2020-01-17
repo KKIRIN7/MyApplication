@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AccountInputCheckActivity"></activity>
+        <activity android:name=".HikitugiCheckActivity"></activity>
+        <activity android:name=".AccountInputCheckActivity" />
         <activity android:name=".TrainGreatCircleDescriptionActivity" />
         <activity android:name=".MeasurementTimerEndActivity" />
         <activity android:name=".TrainGluteusMaximusDescriptionActivity" />
