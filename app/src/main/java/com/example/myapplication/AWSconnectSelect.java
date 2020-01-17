@@ -16,8 +16,8 @@ import java.util.Locale;
 
 public class AWSconnectSelect extends AsyncTask<String, Void, String> {
     private TextView textView;
-    private int Select;
-    public AWSconnectSelect(TextView textView, int select) {//textviewを設定する。複数をしたいなら複数分引数などの設定をして
+    private Integer Select;
+    public AWSconnectSelect(TextView textView, Integer select) {//textviewを設定する。複数をしたいなら複数分引数などの設定をして
         super();
         this.textView = textView;//textviewにidをいれる
         this.Select = select;
@@ -44,7 +44,11 @@ public class AWSconnectSelect extends AsyncTask<String, Void, String> {
         //ダイアログの消去などを行う。
         //doInBackgroundの結果を画面表示に反映させる処理もここに記述。
         String[] test = result.split("," , 0);//phpから受け取ったものを要素ごとに分ける
-        textView.setText(test[Select]);//表示
+        int testlength = test.length;
+        int i = Select;
+        if(i < testlength) {
+            textView.setText(test[i]);//表示
+        }
         //textView.setText("result");
     }
     public static String execute1(String argStrApiUrl, //HashMap<String,String> formItems) {
