@@ -43,7 +43,11 @@ public class AWSconnect1copy extends AsyncTask<String, Void, String> {
         //ダイアログの消去などを行う。
         //doInBackgroundの結果を画面表示に反映させる処理もここに記述。
         String[] test = result.split("\n" , 0);//phpから受け取ったものを要素ごとに分ける
-        textView.setText(result);//表示
+        int testlength = test.length;
+        int i = 0;
+        if(i < testlength) {
+            textView.setText(test[i]);//表示
+        }
         //textView.setText("result");
     }
     public static String execute1(String argStrApiUrl, //HashMap<String,String> formItems) {

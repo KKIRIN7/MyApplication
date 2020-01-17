@@ -31,7 +31,7 @@ public class AWSconnect1 extends AsyncTask<String, Void, String> {
         //バックグラウンドで処理させる内容をここで記述。
         //AsyncTaskを使うにあたって、このメソッドの中身は必ず記述しなければいけない。
         //String url = "http://13.113.228.107/ShowTrainMET.php";
-        HashMap<String, String> hikisu = new HashMap<String, String>();
+        //HashMap<String, String> hikisu = new HashMap<String, String>();
         //String hikisu2 = "a=三角筋";
         String a = execute1(params[0], params[1]);//params[0]にURL、params[1]以降にphpに渡す値が入っている
         return a;
@@ -41,7 +41,7 @@ public class AWSconnect1 extends AsyncTask<String, Void, String> {
         //doInBackgroundが終了するとUIスレッドで実行される。
         //ダイアログの消去などを行う。
         //doInBackgroundの結果を画面表示に反映させる処理もここに記述。
-        String[] test = result.split("," , 0);//phpから受け取ったものを要素ごとに分ける
+        //String[] test = result.split("\n" , 0);//phpから受け取ったものを要素ごとに分ける
         textView.setText(result);//表示
         //textView.setText("result");
     }
@@ -116,7 +116,7 @@ public class AWSconnect1 extends AsyncTask<String, Void, String> {
         BufferedReader br = new BufferedReader(new InputStreamReader(stream, "UTF-8"));
         while ((line = br.readLine()) != null) {
             sb.append(line);
-            sb.append(",");
+            sb.append("\n");
         }
         try {
             stream.close();

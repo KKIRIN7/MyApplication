@@ -14,7 +14,7 @@ public class AccountInputErrorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_account_input_error);
     }
     public void onClick0(View v) {
-        Intent intent = new Intent(this, startActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
     public void onClick1(View v) {

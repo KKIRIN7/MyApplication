@@ -18,7 +18,7 @@ public class HikitugiActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void onClick1(View v) {
-        Intent intent = new Intent(this, startActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 }
