@@ -35,7 +35,7 @@ public class AccountInputActivity extends AppCompatActivity {
         }
     }
     public void onClick1(View v) {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

@@ -3,13 +3,19 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 
 public class AccountActivity extends AppCompatActivity {
 
+    private MyOpenHelper helper;
+    private SQLiteDatabase db;
     private AWSconnect4 con;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,13 +23,35 @@ public class AccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_account);
 
 
+        if(helper == null){
+            helper = new MyOpenHelper(getApplicationContext());
+        }
+
+        if(db == null){
+            db = helper.getReadableDatabase();
+        }
+        Log.d("debug","**********Cursor");
+
+        Cursor cursor = db.query(
+                "informationuserdb",
+                new String[] { "mailaddress", "login" },
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+        cursor.moveToFirst();
+        String mymail = cursor.getString(0);
+
         TextView b = findViewById(R.id.textView6);//渡したいtextviewのidをaに入れる
         TextView a = findViewById(R.id.textView7);//渡したいtextviewのidをaに入れる
         TextView c = findViewById(R.id.textView8);//渡したいtextviewのidをaに入れる
         TextView d = findViewById(R.id.textView9);//渡したいtextviewのidをaに入れる
         con = new AWSconnect4(a, b, c, d);//idをawsconnectに送る
         String DBe = new String("http://13.113.228.107/AccountInformationMET.php");//接続するphpファイルの決定
-        String dfaifd = new String("a=12345@gmail.com");//androidstudioからphpに値を送る文字列(phpにはaと設定しているためa=XXXとする)
+        String dfaifd = new String("a=" + mymail);//androidstudioからphpに値を送る文字列(phpにはaと設定しているためa=XXXとする)
         con.execute(DBe, dfaifd);//第一引数にURL、第二引数以降にphpに送りたいものを入れる
 
 

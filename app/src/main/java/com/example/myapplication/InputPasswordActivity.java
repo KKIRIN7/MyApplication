@@ -25,10 +25,8 @@ public class InputPasswordActivity extends AppCompatActivity {
 
     public void onClick1(View v) {
         TextView textview = (TextView) this.findViewById(R.id.editText5);
-        //String s = textview.getText().toString();
-        //String password = hash.md5(s);
-
-        String password = textview.getText().toString();
+        String s = textview.getText().toString();
+        String password = hash.md5(s);
 
         Intent intent = getIntent();
         int judge = intent.getIntExtra("source",0);

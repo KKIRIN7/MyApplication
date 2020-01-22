@@ -43,7 +43,6 @@
         <activity android:name=".TimerSetCountActivity" />
         <activity android:name=".DBActivity" />
         <activity android:name=".InputNewPasswordActivity" />
-        <activity android:name=".Input_New_PasswordActivity" />
         <activity android:name=".hikitugiErrorActivity" />
         <activity android:name=".AccountInputErrorActivity" />
         <activity android:name=".AccountInputActivity" />
@@ -53,6 +52,7 @@
         <activity android:name=".IrregularPasswordActivity" />
         <activity android:name=".InputPasswordActivity" />
         <activity android:name=".InputMailActivity" />
+        <activity android:name=".InputMailCheckActivity" />
         <activity android:name=".CalenderActivity" />
         <activity android:name=".BlankPasswordActivity" />
         <activity android:name=".AccountActivity" />
