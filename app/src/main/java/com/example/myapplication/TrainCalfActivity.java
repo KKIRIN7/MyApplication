@@ -30,7 +30,7 @@ public class TrainCalfActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
     }    public void onClick1(View v) {
-        Intent intent = new Intent(this,TrainDeltoidDescriptionActivity.class);
+        Intent intent = new Intent(this,TrainCalfDescriptionActivity.class);
         String source1 = button1.getText().toString();
         if (!source1.equals("")) {
             intent.putExtra("source1", source1);
@@ -38,7 +38,7 @@ public class TrainCalfActivity extends AppCompatActivity {
         }
     }
     public void onClick2(View v) {
-        Intent intent = new Intent(this,TrainDeltoidDescriptionActivity.class);
+        Intent intent = new Intent(this,TrainCalfDescriptionActivity.class);
         String source2 = button2.getText().toString();
         if (!source2.equals("")) {
             intent.putExtra("source1", source2);
@@ -46,7 +46,7 @@ public class TrainCalfActivity extends AppCompatActivity {
         }
     }
     public void onClick3(View v) {
-        Intent intent = new Intent(this,TrainDeltoidDescriptionActivity.class);
+        Intent intent = new Intent(this,TrainCalfDescriptionActivity.class);
         String source3 = button3.getText().toString();
         if (!source3.equals("")) {
             intent.putExtra("source1", source3);
@@ -54,7 +54,7 @@ public class TrainCalfActivity extends AppCompatActivity {
         }
     }
     public void onClick4(View v) {
-        Intent intent = new Intent(this,TrainDeltoidDescriptionActivity.class);
+        Intent intent = new Intent(this,TrainCalfDescriptionActivity.class);
         String source4 = button4.getText().toString();
         if (!source4.equals("")) {
             intent.putExtra("source1", source4);

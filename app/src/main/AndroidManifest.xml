@@ -13,7 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".HikitugiCheckActivity"></activity>
+        <activity android:name=".TrainAbdominalobliquesDescriptionActivity"></activity>
+        <activity android:name=".TrainButtocsDiscriptionActivity" />
+        <activity android:name=".AWSconnect2" />
+        <activity android:name=".TrainRectusmusleDescriptionActivity" />
+        <activity android:name=".TrainPectoralisMajorDescriptionActivity" />
+        <activity android:name=".HikitugiCheckActivity" />
         <activity android:name=".AccountInputCheckActivity" />
         <activity android:name=".TrainGreatCircleDescriptionActivity" />
         <activity android:name=".MeasurementTimerEndActivity" />

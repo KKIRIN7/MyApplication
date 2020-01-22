@@ -1,20 +1,20 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class TrainTricepsDescriptionActivity extends AppCompatActivity {
+public class TrainAbdominalobliquesDescriptionActivity extends AppCompatActivity {
     private AWSconnect2 con;
     private TextView text;
     private TextView text2;
-    private String TrainName;
-    @Override
+    private String TrainName;    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_train_triceps_description);
+        setContentView(R.layout.activity_train_abdominalobliques_description);
         Intent intent = getIntent();
 
         String judge = intent.getStringExtra("source1");
@@ -26,7 +26,7 @@ public class TrainTricepsDescriptionActivity extends AppCompatActivity {
         String dfaifd = new String("a="+judge);//androidstudioからphpに値を送る文字列(phpにはaと設定しているためa=XXXとする)
         con.execute(DBe,dfaifd);//第一引数にURL、第二引数以降にphpに送りたいのを入れる
         text.setText(dfaifd);
-}
+    }
     public void onClick1(View v) {
         String tenpo = text2.getText().toString();
         if(tenpo.equals("0")){
