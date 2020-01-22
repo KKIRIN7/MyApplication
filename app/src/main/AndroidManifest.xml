@@ -70,7 +70,6 @@
         <activity android:name=".TrainBackActivity" />
         <activity android:name=".TrainBigActivity" />
         <activity android:name=".ShopMachineActivity" />
-        <activity android:name=".startActivity" />
         <activity android:name=".ShopSupplyActivity" />
         <activity android:name=".ApplyCompleteActivity" />
         <activity android:name=".MeasurementTempoActivity" />
