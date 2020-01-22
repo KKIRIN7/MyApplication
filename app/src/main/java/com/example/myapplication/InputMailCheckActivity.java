@@ -13,7 +13,6 @@ import android.widget.TextView;
 public class InputMailCheckActivity extends AppCompatActivity {
 
     private AWSconnectSelect con;
-    private TextView textView;
     private EditText editTextKey, editTextValue;
     private MyOpenHelper helper;
     private SQLiteDatabase db;
