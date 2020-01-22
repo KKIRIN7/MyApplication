@@ -6,8 +6,14 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +25,7 @@ public class MeasurementTempoActivity extends AppCompatActivity {
     long time = 10000;//10秒
     long Miniute = 0;
     long Miniute2 = 0;
-    static int term = 1;
+    int term = 1;
     static int term2 = 0;
     int Timeminview = 0;
     int Timesecview = 0;
@@ -51,6 +57,10 @@ public class MeasurementTempoActivity extends AppCompatActivity {
     }
 
     public void onClick1(View v) {//スタート
+
+        TextView textview = (TextView) findViewById(R.id.Tempotrainname);
+        String String_trainname = textview.getText().toString();
+
         EditText TempoSetNumber = (EditText) findViewById(R.id.TempoSetNumber);//セット数
         int Int_TempoSetNumber = Integer.parseInt(TempoSetNumber.getText().toString());
         EditText IntervalMiniute = (EditText) findViewById(R.id.TempoMinute);//インターバル分
@@ -58,6 +68,17 @@ public class MeasurementTempoActivity extends AppCompatActivity {
         EditText IntervalSecond = (EditText) findViewById(R.id.TempoSecond);//インターバル秒
         int Int_IntervalSecond = Integer.parseInt(IntervalSecond.getText().toString());
         EditText NumberTime = (EditText) findViewById(R.id.NumberTime);//回数
+        String String_Numbertime = NumberTime.getText().toString();
+       /* if (String_Numbertime == ""){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("回数が入力されていません");
+            builder.setMessage("回数を入力してください。");
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            Intent intent1 = new Intent(this, MeasurementTempoActivity.class);
+            intent1.putExtra("TimerTrainName",String_trainname);
+        }
+*/
         int Int_NumberTime = Integer.parseInt(NumberTime.getText().toString());
         TextView TempoNumber = (TextView) findViewById(R.id.TempoNumber);//テンポの値を取得
         int Int_TempoNumber = Integer.parseInt(TempoNumber.getText().toString());//Int型に変換
@@ -67,7 +88,7 @@ public class MeasurementTempoActivity extends AppCompatActivity {
         String back = IntervalSecond.getText().toString();
         String numbertime = NumberTime.getText().toString();
 
-        if (Int_NumberTime == 0) {
+        if (Int_NumberTime == 0 ) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("回数が０になっています");
             builder.setMessage("回数を0以外の値に設定してください。");
@@ -77,10 +98,12 @@ public class MeasurementTempoActivity extends AppCompatActivity {
         } else {
 
             Intent intent = new Intent(this, TimerSetCountActivity.class);
+            intent.putExtra("TSCTrainName", String_trainname);
             intent.putExtra("Int_TempoSetNumber", set);
             intent.putExtra("Int_IntervalMiniute", front);
             intent.putExtra("Int_IntervalSecond", back);
             intent.putExtra("Int_NumberTime", numbertime);
+            intent.putExtra("TempoTempo", TempoNumber.getText().toString());
             startActivity(intent);
         }
     }

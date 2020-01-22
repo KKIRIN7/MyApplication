@@ -16,9 +16,9 @@ public class MyOpenHelper extends SQLiteOpenHelper {
     private static final String TABLE_NAME1 = "trainrecorddb";
     private static final String TABLE_NAME2 = "informationuserdb";
     private static final String _ID = "_id";
-    private static final String COLUMN_NAME_TITLE1 = "date";
-    private static final String COLUMN_NAME_TITLE2 = "trainname";
-    private static final String COLUMN_NAME_TITLE3 = "setnum";
+    private static final String COLUMN_NAME_TITLE1 = "date"; //日付20200103
+    private static final String COLUMN_NAME_TITLE2 = "trainname";//名前
+    private static final String COLUMN_NAME_TITLE3 = "setnum";//セット数
     private static final String COLUMN_NAME_TITLE4 = "frequency";
     private static final String COLUMN_NAME_TITLE5 = "time";
 

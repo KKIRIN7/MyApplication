@@ -54,7 +54,6 @@ public class AccountActivity extends AppCompatActivity {
         String dfaifd = new String("a=" + mymail);//androidstudioからphpに値を送る文字列(phpにはaと設定しているためa=XXXとする)
         con.execute(DBe, dfaifd);//第一引数にURL、第二引数以降にphpに送りたいものを入れる
 
-
     }
     public void onClick0(View v) {
         TextView a = findViewById(R.id.textView7);//渡したいtextviewのidをaに入れる
