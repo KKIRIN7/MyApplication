@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".TrainAbdominalobliquesDescriptionActivity"></activity>
+        <activity android:name=".ShopdummyActivity"></activity>
+        <activity android:name=".TrainAbdominalobliquesDescriptionActivity" />
         <activity android:name=".TrainButtocsDiscriptionActivity" />
         <activity android:name=".AWSconnect2" />
         <activity android:name=".TrainRectusmusleDescriptionActivity" />
