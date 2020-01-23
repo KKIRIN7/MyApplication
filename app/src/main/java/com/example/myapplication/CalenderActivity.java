@@ -76,7 +76,7 @@ public class CalenderActivity extends AppCompatActivity {
 
         Cursor cursor = db.query(
                 "trainrecorddb",
-                new String[] { "trainname", "setnum" },
+                new String[] {"trainname", "setnum" ,"frequency","time"},
                 null,
                 null,
                 null,
@@ -90,9 +90,17 @@ public class CalenderActivity extends AppCompatActivity {
 
         for (int i = 0; i < cursor.getCount(); i++) {
             sbuilder.append(cursor.getString(0));
-            sbuilder.append("　　");
+            sbuilder.append("  ");
             sbuilder.append(cursor.getInt(1));
-            sbuilder.append("\n");
+            sbuilder.append("セット  ");
+            int judge = cursor.getInt(2);
+            if(judge == 0){
+                sbuilder.append(cursor.getInt(2));
+                sbuilder.append("回\n");
+            }else {
+                sbuilder.append(cursor.getInt(3));
+                sbuilder.append("秒\n");
+            }
             cursor.moveToNext();
         }
 
@@ -127,8 +135,8 @@ public class CalenderActivity extends AppCompatActivity {
         String key = String.format("%d%02d%02d", year, month, dayOfMonth);
         Cursor cursor = db.query(
                 "trainrecorddb",
-                new String[] { "trainname", "setnum" },
-                "trainname = \"" + key + "\"",
+                new String[] {"trainname", "setnum" ,"frequency","time"},
+                "date = \"" + key + "\"",
                 null,
                 null,
                 null,
@@ -141,9 +149,17 @@ public class CalenderActivity extends AppCompatActivity {
 
         for (int i = 0; i < cursor.getCount(); i++) {
             sbuilder.append(cursor.getString(0));
-            sbuilder.append("　　");
+            sbuilder.append(" ");
             sbuilder.append(cursor.getInt(1));
-            sbuilder.append("\n");
+            sbuilder.append("セット ");
+            int judge = cursor.getInt(2);
+            if(judge == 0){
+                sbuilder.append(cursor.getInt(2));
+                sbuilder.append("回 ");
+            }else {
+                sbuilder.append(cursor.getInt(3));
+                sbuilder.append("秒\n");
+            }
             cursor.moveToNext();
         }
 

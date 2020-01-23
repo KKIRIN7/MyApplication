@@ -46,7 +46,7 @@ public class DBActivity extends AppCompatActivity {
                 String key = editTextKey.getText().toString();
                 String value = editTextValue.getText().toString();
 
-                insertData(db, key, Integer.valueOf(value));
+                insertData(db, key, value);
             }
         });
 
@@ -125,13 +125,16 @@ public class DBActivity extends AppCompatActivity {
         textView.setText(sbuilder.toString());
     }
 
-    private void insertData(SQLiteDatabase db, String com, int price){
+    private void insertData(SQLiteDatabase db, String com, String price){
 
         ContentValues values = new ContentValues();
         values.put("mailaddress", com);
-        values.put("login", price);
-        db.insert("informationuserdb", null, values);
+        values.put("login", 0);
+        //db.insert("informationuserdb", null, values);
+        db.update("informationuserdb",values, "mailaddress = \"" + price + "\"",null);
     }
+
+
 
     private void alldeleteData(){
         db.delete("trainrecorddb", null, null);

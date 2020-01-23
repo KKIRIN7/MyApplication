@@ -35,7 +35,7 @@
         android:focusable="false"
         android:inputType="date"
         android:textAlignment="center"
-        android:textSize="32sp"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView21"
         app:layout_constraintEnd_toEndOf="@+id/imageView21"
         app:layout_constraintHorizontal_bias="0.575"
@@ -52,7 +52,7 @@
         android:text="日付を選択してください"
         android:textAlignment="center"
         android:textColor="#000"
-        android:textSize="20sp"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView21"
         app:layout_constraintEnd_toEndOf="@+id/imageView21"
         app:layout_constraintHorizontal_bias="0.495"
@@ -118,7 +118,7 @@
             android:layout_height="wrap_content"
             android:textColor="#000"
             android:text=""
-            android:textSize="32sp"
+            android:textSize="20sp"
             android:gravity="center_horizontal"/>
     </ScrollView>
 

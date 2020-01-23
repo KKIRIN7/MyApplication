@@ -33,7 +33,7 @@
         android:autofillHints="@string/hint_value"
         android:background="#fff"
         android:hint="@string/hint_value"
-        android:inputType="numberDecimal"
+        android:inputType="text"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/edit_text_key"
