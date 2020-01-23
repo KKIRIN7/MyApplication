@@ -7,7 +7,7 @@
     tools:context=".TempoIntervalActivity">
 
     <ImageView
-        android:id="@+id/imageView22"
+        android:id="@+id/imageView28"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -15,17 +15,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/tempo_interval2" />
-
-    <TextView
-        android:id="@+id/trainname2"
-        android:layout_width="209dp"
-        android:layout_height="61dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.138" />
 
     <TextView
         android:id="@+id/Intervalview"
@@ -39,6 +28,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.311" />
+
+    <TextView
+        android:id="@+id/trainname2"
+        android:layout_width="253dp"
+        android:layout_height="88dp"
+        android:text="TextView"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.563"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.139" />
 
     <TextView
         android:id="@+id/Intervaltime"
