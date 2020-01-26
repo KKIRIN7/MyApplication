@@ -26,8 +26,13 @@ public class MeasurementTimerActivity extends AppCompatActivity {
     long Miniute = 0;
     int term = 0;
     int stopterm = 0;
-    private AWSconnect1 con;
+    private AWSconnectTimer con;
     private TextView text;
+    private TextView setNumber;
+    private TextView timerMiniute;
+    private TextView timerSecond;
+    private TextView intervalMiniute;
+    private TextView intervalSecond;
     String Point = "29";
     private MyOpenHelper helper;
     private SQLiteDatabase db;
@@ -44,6 +49,15 @@ public class MeasurementTimerActivity extends AppCompatActivity {
         assert Trainname != null;
         if (!Trainname.equals("")){//Trainname != null であることを想定している
             Textview.setText(Trainname);
+            setNumber = findViewById(R.id.SetNumber);
+            timerMiniute = findViewById(R.id.TimerCountTimeMiniute);
+            timerSecond = findViewById(R.id.TimerCountTimeSecond);
+            intervalMiniute = findViewById(R.id.IntervalMiniute);
+            intervalSecond = findViewById(R.id.IntervalSecond);
+            con = new AWSconnectTimer(setNumber, timerMiniute, timerSecond, intervalMiniute, intervalSecond);//idをawsconnectに送る
+            String URL = new String("http://13.113.228.107/ShowMeasurementTimerMET.php");//接続するphpファイルの決定
+            String Values = new String("a="+Trainname);//androidstudioからphpに値を送る文字列(phpにはaと設定しているためa=XXXとする)
+            con.execute(URL,Values);//第一引数にURL、第二引数以降にphpに送りたいのを入れる
         }else{
             Textview.setText("トレーニングが入力されていません");
         }

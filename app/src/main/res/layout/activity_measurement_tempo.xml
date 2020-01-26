@@ -208,7 +208,7 @@
         app:layout_constraintVertical_bias="0.278" />
 
     <EditText
-        android:id="@+id/TempoMinute"
+        android:id="@+id/IntervalMiniute"
         android:layout_width="45dp"
         android:layout_height="62dp"
         android:ems="10"
@@ -238,7 +238,7 @@
         app:layout_constraintVertical_bias="0.277" />
 
     <EditText
-        android:id="@+id/TempoSecond"
+        android:id="@+id/IntervalSecond"
         android:layout_width="46dp"
         android:layout_height="66dp"
         android:ems="10"
