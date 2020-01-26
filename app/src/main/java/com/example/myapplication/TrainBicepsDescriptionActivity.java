@@ -37,7 +37,7 @@ public class TrainBicepsDescriptionActivity extends AppCompatActivity {
             startActivity(intent);
         }else{
             Intent intent = new Intent(this,MeasurementTempoActivity.class);
-            intent.putExtra("InputTrainName", TrainName);
+            intent.putExtra("TimerTrainName", TrainName);
             startActivity(intent);
         }
     }

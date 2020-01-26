@@ -49,7 +49,7 @@
         android:layout_height="126dp"
         android:lineSpacingExtra="8sp"
         android:text="dss"
-        android:textColor="@color/blackColor"
+        android:textColor="@android:color/background_light"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView1"
         app:layout_constraintEnd_toEndOf="@+id/imageView1"
