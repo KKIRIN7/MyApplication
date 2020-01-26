@@ -44,13 +44,34 @@ public class ShopMachineActivity extends AppCompatActivity {
     }
 
     public void onClick3(View v) {
-        Intent intent = new Intent(this, MenuActivity.class);
-        startActivity(intent);
+        if (now_page_num > 1) {
+            now_page_num--;
+            button1.setText("");
+            button2.setText("");
+            button3.setText("");
+            button4.setText("");
+            now_page.setText(String.valueOf(now_page_num));
+            con = new AWSconnectShop(button1, button2, button3, button4, now_page, all_page);//idをawsconnectに送る
+            String URL = new String("http://13.113.228.107/ShowGoodsMET.php");//接続するphpファイルの決定
+            String Values = new String("a=2");//androidstudioからphpに値を送る文字列(phpにはaと設定しているためa=XXXとする)
+            con.execute(URL, Values);//第一引数にURL、第二引数以降にphpに送りたいものを入れる
+        }
     }
 
     public void onClick4(View v) {
-        Intent intent = new Intent(this, MenuActivity.class);
-        startActivity(intent);
+        int all_page_num = Integer.parseInt(all_page.getText().toString());
+        if (all_page_num > now_page_num) {
+            now_page_num++;
+            button1.setText("");
+            button2.setText("");
+            button3.setText("");
+            button4.setText("");
+            now_page.setText(String.valueOf(now_page_num));
+            con = new AWSconnectShop(button1, button2, button3, button4, now_page, all_page);//idをawsconnectに送る
+            String URL = new String("http://13.113.228.107/ShowGoodsMET.php");//接続するphpファイルの決定
+            String Values = new String("a=2");//androidstudioからphpに値を送る文字列(phpにはaと設定しているためa=XXXとする)
+            con.execute(URL, Values);//第一引数にURL、第二引数以降にphpに送りたいものを入れる
+        }
     }
     public void onClick5(View v) {
         Intent intent = new Intent(this, MenuActivity.class);

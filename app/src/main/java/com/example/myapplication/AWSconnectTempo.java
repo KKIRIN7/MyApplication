@@ -52,7 +52,7 @@ public class AWSconnectTempo extends AsyncTask<String, Void, String> {
         //doInBackgroundの結果を画面表示に反映させる処理もここに記述。
         String[] test = result.split("," , 0);//phpから受け取ったものを要素ごとに分ける
         int testlength = test.length;
-        int i = 1;
+        int i = 2;
         if(i < testlength) {
             textView1.setText(test[i]);//表示
             i++;
