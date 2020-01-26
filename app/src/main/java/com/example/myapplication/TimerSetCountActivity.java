@@ -28,7 +28,7 @@ public class TimerSetCountActivity extends AppCompatActivity {
     private SoundPool soundPool;
     private int Sound;
 
-    public void play_Sound(){soundPool.play(Sound,1f , 1f, 0, 0, 1);};
+    public void play_Sound(){soundPool.play(Sound,1f , 1f, 0, 0, 1);};//音の宣言
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,20 +48,19 @@ public class TimerSetCountActivity extends AppCompatActivity {
         TextView textview4 = (TextView) this.findViewById(R.id.timer); //このアクティビティ内で受け取るBOX
         String Tempo = intent.getStringExtra("TempoTempo");//何の名前で受け渡してきたか
 
-
         textview.setText(trainname);
         textview1.setText(String.valueOf(TempoSetNumber));
         textview2.setText(String.valueOf(IntervalMiniute));
         textview3.setText(String.valueOf(IntervalSecond));
         textview4.setText(String.valueOf(NumberTime));
-        // 3分= 3x60x1000 = 180000 msec //回数
         int Int_NumberTime = Integer.parseInt(textview4.getText().toString());
+
         Miniute = (Int_NumberTime + 1) * 1000;
         helper = new MyOpenHelper(getApplicationContext());
         db = helper.getWritableDatabase();
         float f = Float.parseFloat(Tempo);
 
-        Float Float_Tempo = (3 * f + 5) / 16;
+        Float Float_Tempo = (3 * f + 5) / 16;//テンポ数によって速さを変える
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
 
@@ -83,11 +82,10 @@ public class TimerSetCountActivity extends AppCompatActivity {
         Sound = soundPool.load(this, R.raw.ka2, 1); //音を変える rawファイルに入ってるのが該当
     }
 
-    public void onClick0(View v) {
+    public void onClick0(View v) {//バツボタン
 
         TextView trainname = (TextView) findViewById(R.id.trainname);
         String String_trainname = trainname.getText().toString();
-
         TextView TempoSetNumber = (TextView) findViewById(R.id.SET);//セット数
         int Int_TempoSetNumber = Integer.parseInt(TempoSetNumber.getText().toString());
         TextView NumberTime = (TextView) findViewById(R.id.timer);//回数
@@ -96,9 +94,6 @@ public class TimerSetCountActivity extends AppCompatActivity {
         int Int_IntervalMiniute = Integer.parseInt(IntervalMiniute.getText().toString());
         TextView IntervalSecond = (TextView) findViewById(R.id.interval2);//インターバル秒
         int Int_IntervalSecond = Integer.parseInt(IntervalSecond.getText().toString());
-        //int numbertime = Int_NumberTime;
-        //int set = Int_TempoSetNumber;
-
 
         if(Check == 1) {
             CountDownTimer.cancel();
@@ -113,15 +108,8 @@ public class TimerSetCountActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onClick1(View v) {
+    public void onClick1(View v) {//START
         Check = 1;
-
-        /*Intent intent = getIntent();
-        String Tempo = intent.getStringExtra("TempoTempo");//何の名前で受け渡してきたか
-        int int_Tempo = Integer.parseInt(Tempo);
-        int Int_Tempo = ((3 * int_Tempo + 5) / 16) * 1000;
-*/
-
 
         CountDownTimer = new CountDownTimer(Miniute, 1000) {    //回数
 
@@ -143,9 +131,7 @@ public class TimerSetCountActivity extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                 //1秒毎に更新
                 Miniute = millisUntilFinished;
-               // if (Check == 1) {
-                  //  CountDownTimer.cancel();
-                //}
+
                 if (numbertime != 0) {
                     play_Sound(); //音楽を呼び出す
                     numbertime--;
@@ -154,10 +140,7 @@ public class TimerSetCountActivity extends AppCompatActivity {
                     set--;
                     ((TextView) findViewById(R.id.SET)).setText(String.valueOf(set));
                     numbertime = Int_NumberTime;
-                    ((TextView) findViewById(R.id.timer)).setText(String.valueOf(numbertime));
-                    //  } else {
-                    //    numbertime = Int_NumberTime;
-                    //  ((TextView) findViewById(R.id.timer)).setText(String.valueOf(numbertime));
+                    ((TextView) findViewById(R.id.timer)).setText(String.valueOf(numbertime));//セット数が減った後、回数を初期値に戻す
                 }
             }
 
@@ -165,13 +148,12 @@ public class TimerSetCountActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
 
-                if (set == 0 && numbertime == 0) {
+                if (set == 0 && numbertime == 0) {//端末DBにトレーニング状況を保存
 
                     ContentValues values = new ContentValues();
                     Date date = new Date();
                     SimpleDateFormat ymd = new SimpleDateFormat("yyyyMMdd");
                     String String_ymd = ymd.format(new Date());
-                    //int Int_ymd = Integer.valueOf(String_ymd);
                     TextView Textview = (TextView) findViewById(R.id.trainname);
                     String String_inputtrainname = Textview.getText().toString();
                     values.put("date", String_ymd);
@@ -185,18 +167,14 @@ public class TimerSetCountActivity extends AppCompatActivity {
                     startActivity(intent);
 
                 } else {
-                    numbertime = Int_NumberTime;
-                    ((TextView) findViewById(R.id.timer)).setText(String.valueOf(numbertime));
-                    //if (Check == 0) {
-                        Intent intent = new Intent(TimerSetCountActivity.this, TempoIntervalActivity.class);
 
+                        Intent intent = new Intent(TimerSetCountActivity.this, TempoIntervalActivity.class);
                         intent.putExtra("TIATrainName", String_trainname);
                         intent.putExtra("Int_TempoSetNumber", set);
                         intent.putExtra("Int_NumberTime", numbertime);
                         intent.putExtra("Int_IntervalMiniute", Int_IntervalMiniute);
                         intent.putExtra("Int_IntervalSecond", Int_IntervalSecond);
                         startActivity(intent);
-                    //}
                 }
             }
         }.start();

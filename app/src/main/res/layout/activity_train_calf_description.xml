@@ -48,7 +48,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text=""
-        android:textSize="18sp"
+        android:textSize="0sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView1"
         app:layout_constraintEnd_toEndOf="@+id/imageView1"
         app:layout_constraintStart_toStartOf="@+id/imageView1"

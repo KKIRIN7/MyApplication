@@ -1,10 +1,13 @@
 package com.example.myapplication;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.icu.text.SimpleDateFormat;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,7 +29,7 @@ public class MeasurementTimerEndActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_measurement_timer_end);
 
-       // Intent intent = getIntent();
+        //DBの呼び出し
         if (helper == null) {
             helper = new MyOpenHelper(getApplicationContext());
         }
@@ -58,11 +61,12 @@ public class MeasurementTimerEndActivity extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void onClick0(View v) {
+        //ここからメールアドレスの参照//
         if (helper == null) {
             helper = new MyOpenHelper(getApplicationContext());
         }
-
         if (db == null) {
             db = helper.getReadableDatabase();
         }
@@ -87,35 +91,64 @@ public class MeasurementTimerEndActivity extends AppCompatActivity {
         String Mailaddres = new String("a=" + mymail);//androidstudioからphpに値を送る文字列(phpにはaと設定しているためa=XXXとする)
         con.execute(URL, Mailaddres);//第一引数にURL、第二引数以降にphpに送りたいのを入れる
 
+        //ここまでメールアドレスの参照//
+        //ここから日付の参照//
+        if (helper == null) {
+            helper = new MyOpenHelper(getApplicationContext());
+        }
 
-        if ("29".equals(textview.getText().toString())) { //1BDから帰ってきたポイントと29を比較（表示されている）
-            //DBのポイント数を０に
+        if (db == null) {
+            db = helper.getReadableDatabase();
+        }
 
-           /* String String_point = "0";
-            con = new AWSconnectSelect(textview, 3);//idをawsconnectに送る
-            String URL = new String("http://13.113.228.107/PointUpdateMET.php");//接続するphpファイルの決定
-            String Mailaddres = new String("a="+mymail+"&b="+String_point);//androidstudioからphpに値を送る文字列(phpにはaと設定しているためa=XXXとする)
-            con.execute(URL, Mailaddres);//第一引数にURL、第二引数以降にphpに送りたいのを入れる*/
+        SimpleDateFormat ymd = new SimpleDateFormat("yyyyMMdd");
+        String String_ymd = ymd.format(new Date());
 
-            Intent intent = new Intent(this, ApplyCompleteActivity.class);
-            startActivity(intent);
+        Cursor cursor1 = db.query(
+                "trainrecorddb",
+                new String[]{"date"},
+                "date = \"" + String_ymd + "\"",
+                null,
+                null,
+                null,
+                null
+        );
 
-        } else {
-            //DBのポイントを+1
+        cursor1.moveToFirst();
+        String trainday = cursor1.getString(0);
+        cursor1.close();
+        //ここまで日付の参照//
+        //ここからポイントの追加を行う処理//
+        if (!trainday.equals(String_ymd)) {//今日とDB内の日付
 
-            textview = (TextView) findViewById(R.id.PointNow);
-            int Int_Point = Integer.parseInt(textview.getText().toString());//Int型に変換
+            if ("29".equals(textview.getText().toString())) { //BDから帰ってきたポイントと29を比較（表示されている）
+                //DBのポイント数を０に
+                String String_point = "30";
+                con = new AWSconnectSelect(textview, 3);//idをawsconnectSelectに送る
+                String URL1 = new String("http://13.113.228.107/PointUpdateMET.php");//接続するphpファイルの決定
+                String Mailaddres1 = new String("a=" + mymail + "&b="+String_point);
+                con.execute(URL1, Mailaddres1);//第一引数にURL、第二引数以降にphpに送りたいのを入れる*/
 
-            int addPoint = Int_Point + 1;
-            String String_Point = Integer.toString(addPoint);
+                Intent intent = new Intent(this, ApplyCompleteActivity.class);
+                startActivity(intent);
 
-            /*con = new AWSconnectSelect(textview, 3);//idをawsconnectに送る
-            String URL = new String("http://13.113.228.107/PointUpdateMET.php");//接続するphpファイルの決定
-            String Mailaddres = new String("a="+mymail+"&b="+ String_Point);//androidstudioからphpに値を送る文字列(phpにはaと設定しているためa=XXXとする)
-            con.execute(URL, Mailaddres);//第一引数にURL、第二引数以降にphpに送りたいのを入れる*/
+            } else {
+                //DBのポイントを+1
+                int Int_Point = Integer.parseInt(textview.getText().toString());//Int型に変換
+                int addPoint = Int_Point + 1;
+                String String_Point = Integer.toString(addPoint);
 
+                con = new AWSconnectSelect(textview, 3);//idをawsconnectに送る
+                String URL2 = new String("http://13.113.228.107/PointUpdateMET.php");//接続するphpファイルの決定
+                String Mailaddres2 = new String("a=" + mymail + "&b="+String_Point);//androidstudioからphpに値を送る文字列(phpにはaと設定しているためa=XXXとする)
+                con.execute(URL2, Mailaddres2);//第一引数にURL、第二引数以降にphpに送りたいのを入れる*/
+
+                Intent intent = new Intent(this, InputTrainNameActivity.class);
+                startActivity(intent);
+            }
+        } else {//既に同じ日にポイントの加算がされている
             Intent intent = new Intent(this, InputTrainNameActivity.class);
             startActivity(intent);
         }
     }
-        }
+}
