@@ -8,11 +8,14 @@ import android.view.View;
 import android.widget.TextView;
 
 public class ShopSupplyActivity extends AppCompatActivity {
-    private AWSconnect4Shop con;
+    private AWSconnectShop con;
     private TextView button1;
     private TextView button2;
     private TextView button3;
     private TextView button4;
+    private TextView now_page;
+    private TextView all_page;
+    private int now_page_num;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +24,11 @@ public class ShopSupplyActivity extends AppCompatActivity {
         button2 = findViewById(R.id.button7);
         button3 = findViewById(R.id.button8);
         button4 = findViewById(R.id.button9);
-        con = new AWSconnect4Shop(button1,button2,button3,button4);//idをawsconnectに送る
+        now_page = findViewById(R.id.textView10);
+        all_page = findViewById(R.id.textView12);
+        now_page_num = 1;
+        now_page.setText(String.valueOf(now_page_num));
+        con = new AWSconnectShop(button1,button2,button3,button4, now_page, all_page);//idをawsconnectに送る
         String URL = new String("http://13.113.228.107/ShowGoodsMET.php");//接続するphpファイルの決定
         String Values = new String("a=0");//androidstudioからphpに値を送る文字列(phpにはaと設定しているためa=XXXとする)
         con.execute(URL, Values);//第一引数にURL、第二引数以降にphpに送りたいものを入れる

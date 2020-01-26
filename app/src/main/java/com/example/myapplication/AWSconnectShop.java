@@ -14,18 +14,23 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Locale;
 
-public class AWSconnect4Shop extends AsyncTask<String, Void, String> {
+public class AWSconnectShop extends AsyncTask<String, Void, String> {
     private TextView textView1;
     private TextView textView2;
     private TextView textView3;
     private TextView textView4;
+    private TextView now_page;
+    private TextView all_page;
+    private final Integer buttons = 4;
 
-    public AWSconnect4Shop(TextView textView1 , TextView textView2 , TextView textView3 , TextView textView4) {//textviewを設定する。複数をしたいなら複数分引数などの設定をして
+    public AWSconnectShop(TextView textView1 , TextView textView2 , TextView textView3 , TextView textView4, TextView now_page, TextView all_page) {//textviewを設定する。複数をしたいなら複数分引数などの設定をして
         super();
         this.textView1 = textView1;//textviewにidをいれる
         this.textView2 = textView2;//textviewにidをいれる
         this.textView3 = textView3;//textviewにidをいれる
         this.textView4 = textView4;//textviewにidをいれる
+        this.now_page = now_page;
+        this.all_page = all_page;
     }
     @Override
     protected void onPreExecute() {
@@ -50,7 +55,16 @@ public class AWSconnect4Shop extends AsyncTask<String, Void, String> {
         //doInBackgroundの結果を画面表示に反映させる処理もここに記述。
         String[] test = result.split("\t" , 0);//phpから受け取ったものを要素ごとに分ける
         int testlength = test.length;
-        int i = 0;
+        int needValues = (testlength / 3);
+        if (all_page.getText().toString().equals("")) {
+            int all_page_num = needValues / buttons;
+            if ((needValues % buttons) != 0) {
+                all_page_num++;
+            }
+            all_page.setText(String.valueOf(all_page_num));
+        }
+        int i = Integer.parseInt(now_page.getText().toString()) - 1;
+        i *= (3 * buttons);
         if(i < testlength) {
             textView1.setText(test[i]);//表示
             i += 3;
