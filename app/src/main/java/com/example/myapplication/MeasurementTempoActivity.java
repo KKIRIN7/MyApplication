@@ -78,17 +78,11 @@ public class MeasurementTempoActivity extends AppCompatActivity {
 
         TextView textview = (TextView) findViewById(R.id.Tempotrainname);
         String String_trainname = textview.getText().toString();
-
         EditText TempoSetNumber = (EditText) findViewById(R.id.TempoSetNumber);//セット数
-
         EditText IntervalMiniute = (EditText) findViewById(R.id.IntervalMiniute);////////インターバル分///////////////////////////
-
         EditText IntervalSecond = (EditText) findViewById(R.id.IntervalSecond);//////////インターバル秒/////////////////////////
-
         EditText NumberTime = (EditText) findViewById(R.id.NumberTime);//回数
-
         TextView TempoNumber = (TextView) findViewById(R.id.TempoNumber);//テンポの値を取得
-
 
         if (TempoSetNumber.getText().toString().equals("") || IntervalMiniute.getText().toString().equals("")
                 || IntervalSecond.getText().toString().equals("") || NumberTime.getText().toString().equals("")) {
@@ -113,7 +107,9 @@ public class MeasurementTempoActivity extends AppCompatActivity {
                 builder.setMessage("0以外の数値を入力してください。");
                 AlertDialog dialog = builder.create();
                 dialog.show();
+
             } else {
+
                 Intent intent = new Intent(this, TimerSetCountActivity.class);
                 intent.putExtra("TSCTrainName", String_trainname);
                 intent.putExtra("Int_TempoSetNumber", set);

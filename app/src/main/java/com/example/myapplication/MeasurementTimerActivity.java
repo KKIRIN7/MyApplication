@@ -44,10 +44,16 @@ public class MeasurementTimerActivity extends AppCompatActivity {
     int termX = 0;
     private int timercoutminiute;
     private int timercountsec;
-    public int asdf;
-    public int lkjh;
+    public int Maxmin;
+    public int Maxsec;
+
+    private int timerIntervalmin;
+    private int timerIntervalsec;
     public int STOPIntervalMin;
     public int STOPIntervalSec;
+
+    public int Maxintervalmin;
+    public int Maxintervalsec;
 
 
 
@@ -108,11 +114,19 @@ public class MeasurementTimerActivity extends AppCompatActivity {
         }else {
             int Int_TimerCountTimeMiniute = Integer.parseInt(TimerCountTimeMiniute.getText().toString());
             int Int_TimerCountTimeSecond = Integer.parseInt(TimerCountTimeSecond.getText().toString());
+            int Int_TimerIntervalMiniute = Integer.parseInt(TimerIntervalMiniute.getText().toString());
+            int Int_TimerIntervalSecond = Integer.parseInt(TimerIntervalSecond.getText().toString());
 
-            if((Int_TimerCountTimeMiniute != STOPTimerMin || Int_TimerCountTimeSecond != STOPTimerSec)
-            && (Int_TimerCountTimeMiniute != asdf || Int_TimerCountTimeMiniute != lkjh)){
+
+            if((Int_TimerCountTimeMiniute != STOPTimerMin || Int_TimerCountTimeSecond != STOPTimerSec ||
+                    Int_TimerIntervalMiniute != STOPIntervalMin || Int_TimerIntervalSecond != STOPIntervalSec )
+            && (Int_TimerCountTimeMiniute != Maxmin || Int_TimerCountTimeSecond != Maxsec ||
+                    Int_TimerIntervalMiniute != Maxintervalmin || Int_TimerIntervalSecond != Maxintervalsec)){
+
                 STOPTimerMin = Int_TimerCountTimeMiniute;
                 STOPTimerSec = Int_TimerCountTimeSecond;
+                STOPIntervalMin = Int_TimerIntervalMiniute;
+                STOPIntervalSec =Int_TimerIntervalSecond;
                 termX = 0;
                 term = 0;
             }
@@ -120,21 +134,25 @@ public class MeasurementTimerActivity extends AppCompatActivity {
             if (stopterm == 0) {
 
                 int Int_TimerSetNumber = Integer.parseInt(TimerSetNumber.getText().toString());
-                int Int_TimerIntervalMiniute = Integer.parseInt(TimerIntervalMiniute.getText().toString());
-                int Int_TimerIntervalSecond = Integer.parseInt(TimerIntervalSecond.getText().toString());
-                //int Int_TimerCountTimeMiniute = Integer.parseInt(TimerCountTimeMiniute.getText().toString());
-                //int Int_TimerCountTimeSecond = Integer.parseInt(TimerCountTimeSecond.getText().toString());
-
 
                 if (termX == 0) {
                     timercoutminiute = Int_TimerCountTimeMiniute;
                     timercountsec = Int_TimerCountTimeSecond;
-                    asdf = timercoutminiute;//げんぎょうの最高
-                    lkjh = timercountsec;
+                    Maxmin = timercoutminiute;//げんぎょうの最高
+                    Maxsec = timercountsec;
+
+                    timerIntervalmin = Int_TimerIntervalMiniute;
+                    timerIntervalsec = Int_TimerIntervalSecond;
+                    Maxintervalmin = timerIntervalmin;
+                    Maxintervalsec = timerIntervalsec;
 
                 } else {
+
                     timercoutminiute = STOPTimerMin;
                     timercountsec = STOPTimerSec;
+
+                    timerIntervalmin = STOPIntervalMin;
+                    timerIntervalsec = STOPIntervalSec;
                 }
 
                 if (Int_TimerCountTimeMiniute == 0 && Int_TimerCountTimeSecond == 0) {//時間が0分0秒の時
@@ -154,11 +172,8 @@ public class MeasurementTimerActivity extends AppCompatActivity {
                 } else {
                     stopterm = 1;
 
-                    //Miniute = (Int_TimerCountTimeMiniute * 60 + Int_TimerCountTimeSecond) * 1000 + 100;//カウントダウンタイマー/時間カウント
-                    //IntervalTotal = (Int_TimerIntervalMiniute * 60 + Int_TimerIntervalSecond) * 1000;//カウントダウンタイマー/インターバルカウント
-
                     Miniute = (timercoutminiute * 60 + timercountsec) * 1000 + 100;
-                    IntervalTotal = (Int_TimerIntervalMiniute * 60 + Int_TimerIntervalSecond) * 1000;
+                    IntervalTotal = (timerIntervalmin * 60 + timerIntervalsec) * 1000;
 
                     if (term == 0) {
 
@@ -177,7 +192,6 @@ public class MeasurementTimerActivity extends AppCompatActivity {
 
 
                             int FirstTime = Int_TimerCountTimeMiniute * 60 + Int_TimerCountTimeSecond;//画面が切り替わる際に元の値に戻す用
-                            // int DBSetNumber = Int_TimerSetNumber;//端末DBに保存するための初期セット数
 
                             public void onTick(long millisUntilFinished) {
                                 int sparetime = (int) millisUntilFinished;//時間をカウントするための処理
@@ -238,11 +252,11 @@ public class MeasurementTimerActivity extends AppCompatActivity {
                                     startActivity(intent);
                                 }
 
-                                STOPTimerMin = asdf;
-                                STOPTimerSec = lkjh;
+                                STOPTimerMin = Maxmin;
+                                STOPTimerSec = Maxsec;
 
-                                ((TextView) findViewById(R.id.TimerCountTimeMiniute)).setText(String.valueOf(asdf));/////////////////
-                                ((TextView) findViewById(R.id.TimerCountTimeSecond)).setText(String.valueOf(lkjh));/////////////////更新される
+                                ((TextView) findViewById(R.id.TimerCountTimeMiniute)).setText(String.valueOf(Maxmin));/////////////////
+                                ((TextView) findViewById(R.id.TimerCountTimeSecond)).setText(String.valueOf(Maxsec));/////////////////更新される
                                 termX = 0;
 
                             }
@@ -293,8 +307,12 @@ public class MeasurementTimerActivity extends AppCompatActivity {
                                 AlertDialog dialog = builder.create();
                                 dialog.show();
                                 stopterm = 0;
-                                ((TextView) findViewById(R.id.IntervalMiniute)).setText(String.valueOf(Int_TimerIntervalMiniute));
-                                ((TextView) findViewById(R.id.IntervalSecond)).setText(String.valueOf(Int_TimerIntervalSecond));
+
+                                STOPIntervalMin = Maxintervalmin;
+                                STOPIntervalSec = Maxintervalsec;
+
+                                ((TextView) findViewById(R.id.IntervalMiniute)).setText(String.valueOf(Maxintervalmin));
+                                ((TextView) findViewById(R.id.IntervalSecond)).setText(String.valueOf(Maxintervalsec));
                             }
                         }.start();
                     }
@@ -305,23 +323,9 @@ public class MeasurementTimerActivity extends AppCompatActivity {
 
     public void onClick2(View v) {//STOP
         if (stopterm == 1) {
-           /* EditText TimerSetNumber = (EditText) findViewById(R.id.SetNumber);//セット数
-            int Int_TimerSetNumber = Integer.parseInt(TimerSetNumber.getText().toString());
-            EditText TimerIntervalMiniute = (EditText) findViewById(R.id.IntervalMiniute);//インターバル分
-            int Int_TimerIntervalMiniute = Integer.parseInt(TimerIntervalMiniute.getText().toString());
-            EditText TimerIntervalSecond = (EditText) findViewById(R.id.IntervalSecond);//インターバル秒
-            int Int_TimerIntervalSecond = Integer.parseInt(TimerIntervalSecond.getText().toString());
-            EditText TimerCountTimeMiniute = (EditText) findViewById(R.id.TimerCountTimeMiniute);//時間
-            int Int_TimerCountTimeMiniute = Integer.parseInt(TimerCountTimeMiniute.getText().toString());
-            EditText TimerCountTimeSecond = (EditText) findViewById(R.id.TimerCountTimeSecond);//時間
-            int Int_TimerCountTimeSecond = Integer.parseInt(TimerCountTimeSecond.getText().toString());
-           */ CountDownTimer.cancel();
-            /*((EditText) findViewById(R.id.SetNumber)).setText("" + Int_TimerSetNumber);
-            ((EditText) findViewById(R.id.IntervalMiniute)).setText("" + Int_TimerIntervalMiniute);
-            ((EditText) findViewById(R.id.IntervalSecond)).setText("" + Int_TimerIntervalSecond);
-            ((EditText) findViewById(R.id.TimerCountTimeMiniute)).setText("" + Int_TimerCountTimeMiniute);
-            ((EditText) findViewById(R.id.TimerCountTimeSecond)).setText("" + Int_TimerCountTimeSecond);
-            */stopterm = 0;
+            CountDownTimer.cancel();
+            stopterm = 0;
+
             EditText TimerCountTimeMiniute = (EditText) findViewById(R.id.TimerCountTimeMiniute);//時間
             int Int_TimerCountTimeMiniute = Integer.parseInt(TimerCountTimeMiniute.getText().toString());
             EditText TimerCountTimeSecond = (EditText) findViewById(R.id.TimerCountTimeSecond);//時間
@@ -333,6 +337,7 @@ public class MeasurementTimerActivity extends AppCompatActivity {
 
             STOPTimerMin = Int_TimerCountTimeMiniute;
             STOPTimerSec = Int_TimerCountTimeSecond;
+
             STOPIntervalMin = Int_TimerIntervalMiniute;
             STOPIntervalSec = Int_TimerIntervalSecond;
 
