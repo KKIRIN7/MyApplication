@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 import android.os.Bundle;
+import android.renderscript.Sampler;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -37,6 +38,18 @@ public class MeasurementTimerActivity extends AppCompatActivity {
     private MyOpenHelper helper;
     private SQLiteDatabase db;
     int spare[] = new int[4];
+    int Int_DBsetsend;
+    public int STOPTimerMin;
+    public int STOPTimerSec;
+    int termX = 0;
+    private int timercoutminiute;
+    private int timercountsec;
+    public int asdf;
+    public int lkjh;
+    public int STOPIntervalMin;
+    public int STOPIntervalSec;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +58,9 @@ public class MeasurementTimerActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String Trainname = intent.getStringExtra("InputTrainName"); //InputTrainNameActivity,InputTrainNameActivityから受け取った値を表示
+
+        Int_DBsetsend = intent.getIntExtra("DBSetSend",0);//////////////////////
+
         TextView Textview = (TextView) this.findViewById(R.id.TimerTrainName);
         assert Trainname != null;
         if (!Trainname.equals("")){//Trainname != null であることを想定している
@@ -64,6 +80,7 @@ public class MeasurementTimerActivity extends AppCompatActivity {
 
         helper = new MyOpenHelper(getApplicationContext()); //DB用宣言
         db = helper.getWritableDatabase();
+
     }
 
     public void onClick0(View v) {//RESET
@@ -77,166 +94,210 @@ public class MeasurementTimerActivity extends AppCompatActivity {
     }
 
     public void onClick1(View v) { //START
-        if (stopterm == 0) {
-            EditText TimerSetNumber = (EditText) findViewById(R.id.SetNumber);//セット数
-            int Int_TimerSetNumber = Integer.parseInt(TimerSetNumber.getText().toString());
-            EditText TimerIntervalMiniute = (EditText) findViewById(R.id.IntervalMiniute);//インターバル分
-            int Int_TimerIntervalMiniute = Integer.parseInt(TimerIntervalMiniute.getText().toString());
-            EditText TimerIntervalSecond = (EditText) findViewById(R.id.IntervalSecond);//インターバル秒
-            int Int_TimerIntervalSecond = Integer.parseInt(TimerIntervalSecond.getText().toString());
-            EditText TimerCountTimeMiniute = (EditText) findViewById(R.id.TimerCountTimeMiniute);//時間
+
+        EditText TimerSetNumber = (EditText) findViewById(R.id.SetNumber);//セット数
+        EditText TimerIntervalMiniute = (EditText) findViewById(R.id.IntervalMiniute);//インターバル分
+        EditText TimerIntervalSecond = (EditText) findViewById(R.id.IntervalSecond);//インターバル秒
+        EditText TimerCountTimeMiniute = (EditText) findViewById(R.id.TimerCountTimeMiniute);//時間
+        EditText TimerCountTimeSecond = (EditText) findViewById(R.id.TimerCountTimeSecond);//時間
+
+        if(TimerSetNumber.getText().toString().equals("") || TimerIntervalMiniute.getText().toString().equals("")
+                || TimerIntervalSecond.getText().toString().equals("") || TimerCountTimeMiniute.getText().toString().equals("")
+                || TimerCountTimeSecond.getText().toString().equals("")) {
+
+        }else {
             int Int_TimerCountTimeMiniute = Integer.parseInt(TimerCountTimeMiniute.getText().toString());
-            EditText TimerCountTimeSecond = (EditText) findViewById(R.id.TimerCountTimeSecond);//時間
             int Int_TimerCountTimeSecond = Integer.parseInt(TimerCountTimeSecond.getText().toString());
 
-            if (Int_TimerCountTimeMiniute == 0 && Int_TimerCountTimeSecond == 0) {//時間が0分0秒の時
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("時間が設定されていません");
-                builder.setMessage("時間を設定してください。");
-                AlertDialog dialog = builder.create();
-                dialog.show();
+            if((Int_TimerCountTimeMiniute != STOPTimerMin || Int_TimerCountTimeSecond != STOPTimerSec)
+            && (Int_TimerCountTimeMiniute != asdf || Int_TimerCountTimeMiniute != lkjh)){
+                STOPTimerMin = Int_TimerCountTimeMiniute;
+                STOPTimerSec = Int_TimerCountTimeSecond;
+                termX = 0;
+                term = 0;
+            }
 
-            }else if(Int_TimerIntervalMiniute == 0 && Int_TimerIntervalSecond == 0){//インターバルが0分0秒の時
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("インターバルが設定されていません");
-                builder.setMessage("インターバルを設定してください。");
-                AlertDialog dialog = builder.create();
-                dialog.show();
+            if (stopterm == 0) {
 
-            } else {
-                stopterm = 1;
+                int Int_TimerSetNumber = Integer.parseInt(TimerSetNumber.getText().toString());
+                int Int_TimerIntervalMiniute = Integer.parseInt(TimerIntervalMiniute.getText().toString());
+                int Int_TimerIntervalSecond = Integer.parseInt(TimerIntervalSecond.getText().toString());
+                //int Int_TimerCountTimeMiniute = Integer.parseInt(TimerCountTimeMiniute.getText().toString());
+                //int Int_TimerCountTimeSecond = Integer.parseInt(TimerCountTimeSecond.getText().toString());
 
-                Miniute = (Int_TimerCountTimeMiniute * 60 + Int_TimerCountTimeSecond) * 1000 + 100;//カウントダウンタイマー/時間カウント
-                IntervalTotal = (Int_TimerIntervalMiniute * 60 + Int_TimerIntervalSecond) * 1000;//カウントダウンタイマー/インターバルカウント
 
-                if (term == 0) {
+                if (termX == 0) {
+                    timercoutminiute = Int_TimerCountTimeMiniute;
+                    timercountsec = Int_TimerCountTimeSecond;
+                    asdf = timercoutminiute;//げんぎょうの最高
+                    lkjh = timercountsec;
 
-                    CountDownTimer = new CountDownTimer(Miniute, 1000) {    //時間
-                        EditText TimerSetNumber = (EditText) findViewById(R.id.SetNumber);//セット数
-                        int Int_TimerSetNumber = Integer.parseInt(TimerSetNumber.getText().toString());
-                        EditText TimerIntervalMiniute = (EditText) findViewById(R.id.IntervalMiniute);//インターバル分
-                        int Int_TimerIntervalMiniute = Integer.parseInt(TimerIntervalMiniute.getText().toString());
-                        EditText TimerIntervalSecond = (EditText) findViewById(R.id.IntervalSecond);//インターバル秒
-                        int Int_TimerIntervalSecond = Integer.parseInt(TimerIntervalSecond.getText().toString());
-                        EditText TimerCountTimeMiniute = (EditText) findViewById(R.id.TimerCountTimeMiniute);//時間
-                        int Int_TimerCountTimeMiniute = Integer.parseInt(TimerCountTimeMiniute.getText().toString());
-                        EditText TimerCountTimeSecond = (EditText) findViewById(R.id.TimerCountTimeSecond);//時間
-                        int Int_TimerCountTimeSecond = Integer.parseInt(TimerCountTimeSecond.getText().toString());
+                } else {
+                    timercoutminiute = STOPTimerMin;
+                    timercountsec = STOPTimerSec;
+                }
 
-                        int FirstTime = Int_TimerCountTimeMiniute * 60 + Int_TimerCountTimeSecond;//画面が切り替わる際に元の値に戻す用
-                        int DBSetNumber = Int_TimerSetNumber;//端末DBに保存するための初期セット数
+                if (Int_TimerCountTimeMiniute == 0 && Int_TimerCountTimeSecond == 0) {//時間が0分0秒の時
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setTitle("時間が設定されていません");
+                    builder.setMessage("時間を設定してください。");
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
 
-                        public void onTick(long millisUntilFinished) {
-                            int sparetime = (int)millisUntilFinished;//時間をカウントするための処理
-                            int sparetime2 = (int)millisUntilFinished;
-                            int a = 0;
-                            for(int i = 0; i < 4; i++) {
-                                spare[a] = sparetime % 10;
-                                sparetime = sparetime / 10;
-                                a++;
-                            }
+                } else if (Int_TimerIntervalMiniute == 0 && Int_TimerIntervalSecond == 0) {//インターバルが0分0秒の時
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setTitle("インターバルが設定されていません");
+                    builder.setMessage("インターバルを設定してください。");
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
 
-                            int Mintime = sparetime2 / 60000;
-                            int Sectime = sparetime2 % 60000;
-                            int SEctime = Sectime / 1000;
+                } else {
+                    stopterm = 1;
 
-                            if( 5 <= spare[2] && spare[2] <= 9){
-                                SEctime++;
-                            }
-                            //減らした秒数を表示
+                    //Miniute = (Int_TimerCountTimeMiniute * 60 + Int_TimerCountTimeSecond) * 1000 + 100;//カウントダウンタイマー/時間カウント
+                    //IntervalTotal = (Int_TimerIntervalMiniute * 60 + Int_TimerIntervalSecond) * 1000;//カウントダウンタイマー/インターバルカウント
+
+                    Miniute = (timercoutminiute * 60 + timercountsec) * 1000 + 100;
+                    IntervalTotal = (Int_TimerIntervalMiniute * 60 + Int_TimerIntervalSecond) * 1000;
+
+                    if (term == 0) {
+
+                        CountDownTimer = new CountDownTimer(Miniute, 1000) {    //時間
+
+                            EditText TimerSetNumber = (EditText) findViewById(R.id.SetNumber);//セット数
+                            int Int_TimerSetNumber = Integer.parseInt(TimerSetNumber.getText().toString());
+                            EditText TimerIntervalMiniute = (EditText) findViewById(R.id.IntervalMiniute);//インターバル分
+                            int Int_TimerIntervalMiniute = Integer.parseInt(TimerIntervalMiniute.getText().toString());
+                            EditText TimerIntervalSecond = (EditText) findViewById(R.id.IntervalSecond);//インターバル秒
+                            int Int_TimerIntervalSecond = Integer.parseInt(TimerIntervalSecond.getText().toString());
+                            EditText TimerCountTimeMiniute = (EditText) findViewById(R.id.TimerCountTimeMiniute);//時間
+                            int Int_TimerCountTimeMiniute = Integer.parseInt(TimerCountTimeMiniute.getText().toString());
+                            EditText TimerCountTimeSecond = (EditText) findViewById(R.id.TimerCountTimeSecond);//時間
+                            int Int_TimerCountTimeSecond = Integer.parseInt(TimerCountTimeSecond.getText().toString());
+
+
+                            int FirstTime = Int_TimerCountTimeMiniute * 60 + Int_TimerCountTimeSecond;//画面が切り替わる際に元の値に戻す用
+                            // int DBSetNumber = Int_TimerSetNumber;//端末DBに保存するための初期セット数
+
+                            public void onTick(long millisUntilFinished) {
+                                int sparetime = (int) millisUntilFinished;//時間をカウントするための処理
+                                int sparetime2 = (int) millisUntilFinished;
+                                int a = 0;
+                                for (int i = 0; i < 4; i++) {
+                                    spare[a] = sparetime % 10;
+                                    sparetime = sparetime / 10;
+                                    a++;
+                                }
+
+                                int Mintime = sparetime2 / 60000;
+                                int Sectime = sparetime2 % 60000;
+                                int SEctime = Sectime / 1000;
+
+                                if (5 <= spare[2] && spare[2] <= 9) {
+                                    SEctime++;
+                                }
+                                if(SEctime == 60) {
+                                    Sectime = 0;
+                                }
+                                //減らした秒数を表示
                                 ((TextView) findViewById(R.id.TimerCountTimeMiniute)).setText(String.valueOf(Mintime));/////////////////
                                 ((TextView) findViewById(R.id.TimerCountTimeSecond)).setText(String.valueOf(SEctime));/////////////////更新される
-                        }
+                            }
 
-                        @RequiresApi(api = Build.VERSION_CODES.N)
-                        @Override
-                        public void onFinish() {
-                            term = 1;
-                            if(Int_TimerSetNumber != 0) {//セット数が残っている場合
-                                Int_TimerSetNumber--;
-                                ((TextView) findViewById(R.id.SetNumber)).setText(String.valueOf(Int_TimerSetNumber));/////
+                            @RequiresApi(api = Build.VERSION_CODES.N)
+                            @Override
+                            public void onFinish() {
+                                term = 1;
+                                if (Int_TimerSetNumber != 0) {//セット数が残っている場合
+                                    Int_TimerSetNumber--;
+                                    Int_DBsetsend++;
+                                    ((TextView) findViewById(R.id.SetNumber)).setText(String.valueOf(Int_TimerSetNumber));/////
+
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(MeasurementTimerActivity.this);
+                                    builder.setTitle("1セットが終了しました");
+                                    builder.setMessage("スタートボタンでインターバルを開始します。");
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
+                                    stopterm = 0;
+
+                                } else {
+                                    //履歴に登録する。
+                                    ContentValues values = new ContentValues();
+                                    Date date = new Date();
+                                    SimpleDateFormat ymd = new SimpleDateFormat("yyyyMMdd");
+                                    String String_ymd = ymd.format(new Date());
+                                    TextView Textview = (TextView) findViewById(R.id.TimerTrainName);
+                                    String String_inputtrainname = Textview.getText().toString();
+                                    values.put("date", String_ymd);
+                                    values.put("trainname", String_inputtrainname);
+                                    values.put("setnum", Int_DBsetsend);
+                                    values.put("time", FirstTime);
+
+                                    db.insert("trainrecorddb", null, values);
+                                    Intent intent = new Intent(MeasurementTimerActivity.this, MeasurementTimerEndActivity.class);
+                                    startActivity(intent);
+                                }
+
+                                STOPTimerMin = asdf;
+                                STOPTimerSec = lkjh;
+
+                                ((TextView) findViewById(R.id.TimerCountTimeMiniute)).setText(String.valueOf(asdf));/////////////////
+                                ((TextView) findViewById(R.id.TimerCountTimeSecond)).setText(String.valueOf(lkjh));/////////////////更新される
+                                termX = 0;
+
+                            }
+                        }.start();
+                    } else if (term == 1) {
+
+                        CountDownTimer = new CountDownTimer(IntervalTotal, 1000) {  //インターバル
+                            EditText TimerSetNumber = (EditText) findViewById(R.id.SetNumber);//セット数
+                            int Int_TimerSetNumber = Integer.parseInt(TimerSetNumber.getText().toString());
+                            EditText TimerIntervalMiniute = (EditText) findViewById(R.id.IntervalMiniute);//インターバル分
+                            int Int_TimerIntervalMiniute = Integer.parseInt(TimerIntervalMiniute.getText().toString());
+                            EditText TimerIntervalSecond = (EditText) findViewById(R.id.IntervalSecond);//インターバル秒
+                            int Int_TimerIntervalSecond = Integer.parseInt(TimerIntervalSecond.getText().toString());
+
+                            public void onTick(long millisUntilFinished) {
+
+                                int intMUF = (int) millisUntilFinished;
+                                int intMUF2 = (int) millisUntilFinished;
+                                int a = 0;
+                                for (int i = 0; i < 4; i++) {
+                                    spare[a] = intMUF % 10;
+                                    intMUF = intMUF / 10;
+                                    a++;
+                                }
+
+                                IntervalTotal = intMUF2 / 1000;
+                                int Mt = intMUF2 / 60000;
+                                int St = intMUF2 % 60000;
+                                int ST = St / 1000;
+
+                                if (5 <= spare[2] && spare[2] <= 9) {
+                                    ST++;
+                                }
+
+                                ((TextView) findViewById(R.id.IntervalMiniute)).setText(String.valueOf(Mt));
+                                ((TextView) findViewById(R.id.IntervalSecond)).setText(String.valueOf(ST));
+                            }
+
+                            @Override
+                            public void onFinish() {
+                                ((TextView) findViewById(R.id.IntervalMiniute)).setText(String.valueOf(0));
+                                ((TextView) findViewById(R.id.IntervalSecond)).setText(String.valueOf(0));
+                                term = 0;
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(MeasurementTimerActivity.this);
-                                builder.setTitle("1セットが終了しました");
-                                builder.setMessage("スタートボタンでインターバルを開始します。");
+                                builder.setTitle("インターバルを終了しました");
+                                builder.setMessage("スタートボタンでタイマーを開始します。");
                                 AlertDialog dialog = builder.create();
                                 dialog.show();
                                 stopterm = 0;
-
-                            }else{
-                                //履歴に登録する。
-                                ContentValues values = new ContentValues();
-                                Date date = new Date();
-                                SimpleDateFormat ymd = new SimpleDateFormat("yyyyMMdd");
-                                String String_ymd = ymd.format(new Date());
-                                //int Int_ymd = Integer.valueOf(String_ymd);
-                                TextView Textview = (TextView) findViewById(R.id.TimerTrainName);
-                                String String_inputtrainname = Textview.getText().toString();
-                                values.put("date", String_ymd);
-                                values.put("trainname", String_inputtrainname);
-                                values.put("setnum", DBSetNumber);
-                                values.put("time", FirstTime);
-
-                                db.insert("trainrecorddb", null, values);
-                                Intent intent = new Intent(MeasurementTimerActivity.this, MeasurementTimerEndActivity.class);
-                                startActivity(intent);
+                                ((TextView) findViewById(R.id.IntervalMiniute)).setText(String.valueOf(Int_TimerIntervalMiniute));
+                                ((TextView) findViewById(R.id.IntervalSecond)).setText(String.valueOf(Int_TimerIntervalSecond));
                             }
-
-                            ((TextView) findViewById(R.id.TimerCountTimeMiniute)).setText(String.valueOf(Int_TimerCountTimeMiniute));/////////////////
-                            ((TextView) findViewById(R.id.TimerCountTimeSecond)).setText(String.valueOf(Int_TimerCountTimeSecond));/////////////////更新される
-                        }
-                    }.start();
-                } else if (term == 1) {
-
-                    CountDownTimer = new CountDownTimer(IntervalTotal, 1000) {  //インターバル
-                        EditText TimerSetNumber = (EditText) findViewById(R.id.SetNumber);//セット数
-                        int Int_TimerSetNumber = Integer.parseInt(TimerSetNumber.getText().toString());
-                        EditText TimerIntervalMiniute = (EditText) findViewById(R.id.IntervalMiniute);//インターバル分
-                        int Int_TimerIntervalMiniute = Integer.parseInt(TimerIntervalMiniute.getText().toString());
-                        EditText TimerIntervalSecond = (EditText) findViewById(R.id.IntervalSecond);//インターバル秒
-                        int Int_TimerIntervalSecond = Integer.parseInt(TimerIntervalSecond.getText().toString());
-
-                        public void onTick(long millisUntilFinished) {
-
-                            int intMUF = (int)millisUntilFinished;
-                            int intMUF2 = (int)millisUntilFinished;
-                            int a = 0;
-                            for(int i = 0; i < 4; i++) {
-                                spare[a] = intMUF % 10;
-                                intMUF = intMUF / 10;
-                                a++;
-                            }
-
-                            IntervalTotal = intMUF2 / 1000;
-                            int Mt = intMUF2 / 60000;
-                            int St = intMUF2 % 60000;
-                            int ST = St / 1000;
-
-                            if( 5 <= spare[2] && spare[2] <= 9){
-                                ST++;
-                            }
-
-                            ((TextView) findViewById(R.id.IntervalMiniute)).setText("" + Mt);
-                            ((TextView) findViewById(R.id.IntervalSecond)).setText("" + ST);
-                        }
-
-                        @Override
-                        public void onFinish() {
-                            ((TextView) findViewById(R.id.IntervalMiniute)).setText("" + 0);
-                            ((TextView) findViewById(R.id.IntervalSecond)).setText("" + 0);
-                            term = 0;
-
-                            ((TextView) findViewById(R.id.IntervalMiniute)).setText("" + Int_TimerIntervalMiniute);
-                            ((TextView) findViewById(R.id.IntervalSecond)).setText("" + Int_TimerIntervalSecond);
-
-                            AlertDialog.Builder builder = new AlertDialog.Builder(MeasurementTimerActivity.this);
-                            builder.setTitle("インターバルを終了しました");
-                            builder.setMessage("スタートボタンでタイマーを開始します。");
-                            AlertDialog dialog = builder.create();
-                            dialog.show();
-                            stopterm = 0;
-                        }
-                    }.start();
+                        }.start();
+                    }
                 }
             }
         }
@@ -244,7 +305,7 @@ public class MeasurementTimerActivity extends AppCompatActivity {
 
     public void onClick2(View v) {//STOP
         if (stopterm == 1) {
-            EditText TimerSetNumber = (EditText) findViewById(R.id.SetNumber);//セット数
+           /* EditText TimerSetNumber = (EditText) findViewById(R.id.SetNumber);//セット数
             int Int_TimerSetNumber = Integer.parseInt(TimerSetNumber.getText().toString());
             EditText TimerIntervalMiniute = (EditText) findViewById(R.id.IntervalMiniute);//インターバル分
             int Int_TimerIntervalMiniute = Integer.parseInt(TimerIntervalMiniute.getText().toString());
@@ -254,14 +315,28 @@ public class MeasurementTimerActivity extends AppCompatActivity {
             int Int_TimerCountTimeMiniute = Integer.parseInt(TimerCountTimeMiniute.getText().toString());
             EditText TimerCountTimeSecond = (EditText) findViewById(R.id.TimerCountTimeSecond);//時間
             int Int_TimerCountTimeSecond = Integer.parseInt(TimerCountTimeSecond.getText().toString());
-            CountDownTimer.cancel();
-            ((EditText) findViewById(R.id.SetNumber)).setText("" + Int_TimerSetNumber);
+           */ CountDownTimer.cancel();
+            /*((EditText) findViewById(R.id.SetNumber)).setText("" + Int_TimerSetNumber);
             ((EditText) findViewById(R.id.IntervalMiniute)).setText("" + Int_TimerIntervalMiniute);
             ((EditText) findViewById(R.id.IntervalSecond)).setText("" + Int_TimerIntervalSecond);
             ((EditText) findViewById(R.id.TimerCountTimeMiniute)).setText("" + Int_TimerCountTimeMiniute);
             ((EditText) findViewById(R.id.TimerCountTimeSecond)).setText("" + Int_TimerCountTimeSecond);
-            stopterm = 0;
-            term = 0;
+            */stopterm = 0;
+            EditText TimerCountTimeMiniute = (EditText) findViewById(R.id.TimerCountTimeMiniute);//時間
+            int Int_TimerCountTimeMiniute = Integer.parseInt(TimerCountTimeMiniute.getText().toString());
+            EditText TimerCountTimeSecond = (EditText) findViewById(R.id.TimerCountTimeSecond);//時間
+            int Int_TimerCountTimeSecond = Integer.parseInt(TimerCountTimeSecond.getText().toString());
+            EditText TimerIntervalMiniute = (EditText) findViewById(R.id.IntervalMiniute);//インターバル分
+            int Int_TimerIntervalMiniute = Integer.parseInt(TimerIntervalMiniute.getText().toString());
+            EditText TimerIntervalSecond = (EditText) findViewById(R.id.IntervalSecond);//インターバル秒
+            int Int_TimerIntervalSecond = Integer.parseInt(TimerIntervalSecond.getText().toString());
+
+            STOPTimerMin = Int_TimerCountTimeMiniute;
+            STOPTimerSec = Int_TimerCountTimeSecond;
+            STOPIntervalMin = Int_TimerIntervalMiniute;
+            STOPIntervalSec = Int_TimerIntervalSecond;
+
+            termX = 1;
         }
     }
 

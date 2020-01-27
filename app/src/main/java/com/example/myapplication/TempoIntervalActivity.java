@@ -15,6 +15,7 @@ public class TempoIntervalActivity extends AppCompatActivity {
     int Check = 0;
     int time = 0;
     int spare[] = new int[4];
+    int Int_DBsetsend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class TempoIntervalActivity extends AppCompatActivity {
         final int Int_NumberTime = intent.getIntExtra("Int_NumberTime", 0);
         final int Int_IntervalMiniute = intent.getIntExtra("Int_IntervalMiniute", 0);
         final int Int_IntervalSecond = intent.getIntExtra("Int_IntervalSecond", 0);
+        Int_DBsetsend = intent.getIntExtra("DBSetSend",0);//////////////////////
         time = (Int_IntervalMiniute * 60 + Int_IntervalSecond) * 1000;
         ((TextView) findViewById(R.id.Intervalview)).setText("残り" + Int_TempoSetNumber + "セット");
         textview.setText(trainname);
@@ -78,6 +80,7 @@ public class TempoIntervalActivity extends AppCompatActivity {
                 intent.putExtra("Int_IntervalSecond", String_IntervalSecond);
                 intent.putExtra("Int_NumberTime", String_NumberTime);
                 intent.putExtra("TempoTempo", String_TempoTempo);
+                intent.putExtra("DBSetSend", Int_DBsetsend);
                 startActivity(intent);
             }
         }.start();

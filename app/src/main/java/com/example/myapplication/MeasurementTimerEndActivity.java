@@ -113,7 +113,6 @@ public class MeasurementTimerEndActivity extends AppCompatActivity {
                 null,
                 null
         );
-
         cursor1.moveToFirst();
         String trainday = cursor1.getString(0);
         cursor1.close();

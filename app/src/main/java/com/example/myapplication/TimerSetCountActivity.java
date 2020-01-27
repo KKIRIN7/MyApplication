@@ -27,6 +27,7 @@ public class TimerSetCountActivity extends AppCompatActivity {
     private SQLiteDatabase db;
     private SoundPool soundPool;
     private int Sound;
+    int Int_DBsetsend;
 
     public void play_Sound(){soundPool.play(Sound,1f , 1f, 0, 0, 1);};//音の宣言
 
@@ -47,6 +48,7 @@ public class TimerSetCountActivity extends AppCompatActivity {
         String NumberTime = intent.getStringExtra("Int_NumberTime");//何の名前で受け渡してきたか
         TextView textview4 = (TextView) this.findViewById(R.id.timer); //このアクティビティ内で受け取るBOX
         String Tempo = intent.getStringExtra("TempoTempo");//何の名前で受け渡してきたか
+        Int_DBsetsend = intent.getIntExtra("DBSetSend",0);//////////////////////
 
         textview.setText(trainname);
         textview1.setText(String.valueOf(TempoSetNumber));
@@ -138,6 +140,7 @@ public class TimerSetCountActivity extends AppCompatActivity {
                     ((TextView) findViewById(R.id.timer)).setText(String.valueOf(numbertime));//画面にカウントダウンの状態を表示
                 } else if (numbertime == 0 && set != 0) {
                     set--;
+                    Int_DBsetsend++;
                     ((TextView) findViewById(R.id.SET)).setText(String.valueOf(set));
                     numbertime = Int_NumberTime;
                     ((TextView) findViewById(R.id.timer)).setText(String.valueOf(numbertime));//セット数が減った後、回数を初期値に戻す
@@ -158,7 +161,7 @@ public class TimerSetCountActivity extends AppCompatActivity {
                     String String_inputtrainname = Textview.getText().toString();
                     values.put("date", String_ymd);
                     values.put("trainname", String_inputtrainname);
-                    values.put("setnum", Int_TempoSetNumber);
+                    values.put("setnum", Int_DBsetsend);
                     values.put("frequency", Int_NumberTime);
                     values.put("time", FirstTime);
                     db.insert("trainrecorddb", null, values);
@@ -174,6 +177,7 @@ public class TimerSetCountActivity extends AppCompatActivity {
                         intent.putExtra("Int_NumberTime", numbertime);
                         intent.putExtra("Int_IntervalMiniute", Int_IntervalMiniute);
                         intent.putExtra("Int_IntervalSecond", Int_IntervalSecond);
+                        intent.putExtra("DBSetSend", Int_DBsetsend);
                         startActivity(intent);
                 }
             }

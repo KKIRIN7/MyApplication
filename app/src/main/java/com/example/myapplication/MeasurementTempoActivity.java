@@ -35,6 +35,7 @@ public class MeasurementTempoActivity extends AppCompatActivity {
     private TextView intervalMiniute;
     private TextView intervalSecond;
     private AWSconnectTempo con;
+    int Int_DBsetsend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class MeasurementTempoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String Tempotrainname = intent.getStringExtra("TimerTrainName");
         TextView textview = (TextView) this.findViewById(R.id.Tempotrainname);
+        Int_DBsetsend = intent.getIntExtra("DBSetSend",0);//////////////////////
         assert Tempotrainname != null;  //下のIF文に名前が入力されていることを意味する
         if (!Tempotrainname.equals("")) {//ここでは Trainname != null であることを想定している
             textview.setText(Tempotrainname);
@@ -68,8 +70,8 @@ public class MeasurementTempoActivity extends AppCompatActivity {
         Tempo.setText(String.valueOf(1));
         ((EditText) findViewById(R.id.NumberTime)).setText("" + 0);
         ((EditText) findViewById(R.id.TempoSetNumber)).setText("" + 0);
-        ((EditText) findViewById(R.id.TempoMinute)).setText("" + 0);
-        ((EditText) findViewById(R.id.TempoSecond)).setText("" + 0);
+        ((EditText) findViewById(R.id.IntervalMiniute)).setText("" + 0);////
+        ((EditText) findViewById(R.id.IntervalSecond)).setText("" + 0);////
     }
 
     public void onClick1(View v) {//スタート
@@ -78,37 +80,50 @@ public class MeasurementTempoActivity extends AppCompatActivity {
         String String_trainname = textview.getText().toString();
 
         EditText TempoSetNumber = (EditText) findViewById(R.id.TempoSetNumber);//セット数
-        int Int_TempoSetNumber = Integer.parseInt(TempoSetNumber.getText().toString());
-        EditText IntervalMiniute = (EditText) findViewById(R.id.TempoMinute);//インターバル分
-        int Int_IntervalMiniute = Integer.parseInt(IntervalMiniute.getText().toString());
-        EditText IntervalSecond = (EditText) findViewById(R.id.TempoSecond);//インターバル秒
-        int Int_IntervalSecond = Integer.parseInt(IntervalSecond.getText().toString());
+
+        EditText IntervalMiniute = (EditText) findViewById(R.id.IntervalMiniute);////////インターバル分///////////////////////////
+
+        EditText IntervalSecond = (EditText) findViewById(R.id.IntervalSecond);//////////インターバル秒/////////////////////////
+
         EditText NumberTime = (EditText) findViewById(R.id.NumberTime);//回数
-        String String_Numbertime = NumberTime.getText().toString();
-        int Int_NumberTime = Integer.parseInt(NumberTime.getText().toString());
+
         TextView TempoNumber = (TextView) findViewById(R.id.TempoNumber);//テンポの値を取得
-        int Int_TempoNumber = Integer.parseInt(TempoNumber.getText().toString());//Int型に変換
 
-        String set = TempoSetNumber.getText().toString();
-        String front = IntervalMiniute.getText().toString();
-        String back = IntervalSecond.getText().toString();
-        String numbertime = NumberTime.getText().toString();
 
-        if (Int_NumberTime == 0 || Int_IntervalSecond == 0) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("回数または、インターバルが0になっています");
-            builder.setMessage("0以外の数値を入力してください。");
-            AlertDialog dialog = builder.create();
-            dialog.show();
+        if (TempoSetNumber.getText().toString().equals("") || IntervalMiniute.getText().toString().equals("")
+                || IntervalSecond.getText().toString().equals("") || NumberTime.getText().toString().equals("")) {
+
         } else {
-            Intent intent = new Intent(this, TimerSetCountActivity.class);
-            intent.putExtra("TSCTrainName", String_trainname);
-            intent.putExtra("Int_TempoSetNumber", set);
-            intent.putExtra("Int_IntervalMiniute", front);
-            intent.putExtra("Int_IntervalSecond", back);
-            intent.putExtra("Int_NumberTime", numbertime);
-            intent.putExtra("TempoTempo", TempoNumber.getText().toString());
-            startActivity(intent);
+
+            int Int_TempoSetNumber = Integer.parseInt(TempoSetNumber.getText().toString());
+            int Int_IntervalMiniute = Integer.parseInt(IntervalMiniute.getText().toString());
+            int Int_IntervalSecond = Integer.parseInt(IntervalSecond.getText().toString());
+            String String_Numbertime = NumberTime.getText().toString();
+            int Int_TempoNumber = Integer.parseInt(TempoNumber.getText().toString());//Int型に変換
+            int Int_NumberTime = Integer.parseInt(NumberTime.getText().toString());
+
+            String set = TempoSetNumber.getText().toString();
+            String front = IntervalMiniute.getText().toString();
+            String back = IntervalSecond.getText().toString();
+            String numbertime = NumberTime.getText().toString();
+
+            if (Int_NumberTime == 0 || Int_IntervalSecond == 0) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("回数または、インターバルが0になっています");
+                builder.setMessage("0以外の数値を入力してください。");
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            } else {
+                Intent intent = new Intent(this, TimerSetCountActivity.class);
+                intent.putExtra("TSCTrainName", String_trainname);
+                intent.putExtra("Int_TempoSetNumber", set);
+                intent.putExtra("Int_IntervalMiniute", front);
+                intent.putExtra("Int_IntervalSecond", back);
+                intent.putExtra("Int_NumberTime", numbertime);
+                intent.putExtra("DBSetSend", Int_DBsetsend);
+                intent.putExtra("TempoTempo", TempoNumber.getText().toString());
+                startActivity(intent);
+            }
         }
     }
 

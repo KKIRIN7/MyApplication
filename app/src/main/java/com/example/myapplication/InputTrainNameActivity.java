@@ -22,6 +22,7 @@ public class InputTrainNameActivity extends AppCompatActivity {
             //端末データベースに追加する
             Intent intent = new Intent(this, MeasurementTimerActivity.class);
             intent.putExtra("InputTrainName", Inputtrainname); //遷移先にこの情報をその名前で引き継ぐ
+            intent.putExtra("DBSetSend",0);///////////////////////////////////////////////////
             startActivity(intent);//遷移
         } else if(Inputtrainname.equals("")) {//入力されていない場合
             Intent intent = new Intent(this, InputTrainNameErrorActivity.class);
