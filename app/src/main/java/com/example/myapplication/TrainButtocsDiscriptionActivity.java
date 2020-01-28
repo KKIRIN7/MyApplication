@@ -33,12 +33,12 @@ public class TrainButtocsDiscriptionActivity extends AppCompatActivity {
         if(tenpo.equals("0")){
             Intent intent = new Intent(this,MeasurementTimerActivity.class);
             intent.putExtra("InputTrainName", TrainName);
-            intent.putExtra("ExistTrainName", true);
+            intent.putExtra("DBSetSend", 0);
             startActivity(intent);
         }else{
             Intent intent = new Intent(this,MeasurementTempoActivity.class);
             intent.putExtra("TimerTrainName", TrainName);
-            intent.putExtra("ExistTrainName", true);
+            intent.putExtra("DBSetSend", 0);
             startActivity(intent);
         }
     }
