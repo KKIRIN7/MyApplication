@@ -23,7 +23,7 @@ public class TrainRectusmuscleActivity extends AppCompatActivity {
         button4 = findViewById(R.id.button4);
         con = new AWSconnect4(button1,button2,button3,button4);//idをawsconnectに送る
         String DBe = new String("http://13.113.228.107/ShowTrainMET.php");//接続するphpファイルの決定
-        String dfaifd = new String("a=上腕三頭筋");//androidstudioからphpに値を送る文字列(phpにはaと設定しているためa=XXXとする)
+        String dfaifd = new String("a=腹直筋");//androidstudioからphpに値を送る文字列(phpにはaと設定しているためa=XXXとする)
         con.execute(DBe, dfaifd);//第一引数にURL、第二引数以降にphpに送りたいものを入れる
     }
     public void onClick0(View v) {

@@ -45,20 +45,23 @@ public class MeasurementTempoActivity extends AppCompatActivity {
         //InputTrainNameActivityから受け取った値を表示します。
         Intent intent = getIntent();
         String Tempotrainname = intent.getStringExtra("TimerTrainName");
+        boolean dispValues = intent.getBooleanExtra("ExistTrainName", false);
         TextView textview = (TextView) this.findViewById(R.id.Tempotrainname);
         Int_DBsetsend = intent.getIntExtra("DBSetSend",0);//////////////////////
         assert Tempotrainname != null;  //下のIF文に名前が入力されていることを意味する
         if (!Tempotrainname.equals("")) {//ここでは Trainname != null であることを想定している
             textview.setText(Tempotrainname);
-            setNumber = findViewById(R.id.TempoSetNumber);
-            tempoNumber = findViewById(R.id.TempoNumber);
-            countNumber = findViewById(R.id.NumberTime);
-            intervalMiniute = findViewById(R.id.IntervalMiniute);
-            intervalSecond = findViewById(R.id.IntervalSecond);
-            con = new AWSconnectTempo(setNumber, tempoNumber, countNumber, intervalMiniute, intervalSecond);//idをawsconnectに送る
-            String URL = new String("http://13.113.228.107/ShowMeasurementTempoMET.php");//接続するphpファイルの決定
-            String Values = new String("a="+Tempotrainname);//androidstudioからphpに値を送る文字列(phpにはaと設定しているためa=XXXとする)
-            con.execute(URL,Values);//第一引数にURL、第二引数以降にphpに送りたいのを入れる
+            if (dispValues) {
+                setNumber = findViewById(R.id.TempoSetNumber);
+                tempoNumber = findViewById(R.id.TempoNumber);
+                countNumber = findViewById(R.id.NumberTime);
+                intervalMiniute = findViewById(R.id.IntervalMiniute);
+                intervalSecond = findViewById(R.id.IntervalSecond);
+                con = new AWSconnectTempo(setNumber, tempoNumber, countNumber, intervalMiniute, intervalSecond);//idをawsconnectに送る
+                String URL = new String("http://13.113.228.107/ShowMeasurementTempoMET.php");//接続するphpファイルの決定
+                String Values = new String("a=" + Tempotrainname);//androidstudioからphpに値を送る文字列(phpにはaと設定しているためa=XXXとする)
+                con.execute(URL, Values);//第一引数にURL、第二引数以降にphpに送りたいのを入れる
+            }
 
         } else {
             textview.setText("トレーニングが入力されていません");

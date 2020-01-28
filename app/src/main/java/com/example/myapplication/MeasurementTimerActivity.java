@@ -64,6 +64,7 @@ public class MeasurementTimerActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String Trainname = intent.getStringExtra("InputTrainName"); //InputTrainNameActivity,InputTrainNameActivityから受け取った値を表示
+        boolean dispValues = intent.getBooleanExtra("ExistTrainName", false);
 
         Int_DBsetsend = intent.getIntExtra("DBSetSend",0);//////////////////////
 
@@ -71,15 +72,17 @@ public class MeasurementTimerActivity extends AppCompatActivity {
         assert Trainname != null;
         if (!Trainname.equals("")){//Trainname != null であることを想定している
             Textview.setText(Trainname);
-            setNumber = findViewById(R.id.SetNumber);
-            timerMiniute = findViewById(R.id.TimerCountTimeMiniute);
-            timerSecond = findViewById(R.id.TimerCountTimeSecond);
-            intervalMiniute = findViewById(R.id.IntervalMiniute);
-            intervalSecond = findViewById(R.id.IntervalSecond);
-            con = new AWSconnectTimer(setNumber, timerMiniute, timerSecond, intervalMiniute, intervalSecond);//idをawsconnectに送る
-            String URL = new String("http://13.113.228.107/ShowMeasurementTimerMET.php");//接続するphpファイルの決定
-            String Values = new String("a="+Trainname);//androidstudioからphpに値を送る文字列(phpにはaと設定しているためa=XXXとする)
-            con.execute(URL,Values);//第一引数にURL、第二引数以降にphpに送りたいのを入れる
+            if (dispValues) {
+                setNumber = findViewById(R.id.SetNumber);
+                timerMiniute = findViewById(R.id.TimerCountTimeMiniute);
+                timerSecond = findViewById(R.id.TimerCountTimeSecond);
+                intervalMiniute = findViewById(R.id.IntervalMiniute);
+                intervalSecond = findViewById(R.id.IntervalSecond);
+                con = new AWSconnectTimer(setNumber, timerMiniute, timerSecond, intervalMiniute, intervalSecond);//idをawsconnectに送る
+                String URL = new String("http://13.113.228.107/ShowMeasurementTimerMET.php");//接続するphpファイルの決定
+                String Values = new String("a=" + Trainname);//androidstudioからphpに値を送る文字列(phpにはaと設定しているためa=XXXとする)
+                con.execute(URL, Values);//第一引数にURL、第二引数以降にphpに送りたいのを入れる
+            }
         }else{
             Textview.setText("トレーニングが入力されていません");
         }
@@ -346,7 +349,7 @@ public class MeasurementTimerActivity extends AppCompatActivity {
     }
 
     public void onClick3(View v) {//計測テンポ画面に遷移
-        if(term == 1) {
+        if(stopterm == 1) {
             CountDownTimer.cancel();
             stopterm = 0;
         }
@@ -358,8 +361,10 @@ public class MeasurementTimerActivity extends AppCompatActivity {
     }
 
     public void onClick4(View v) {//ホーム画面に遷移
-        CountDownTimer.cancel();
-        stopterm = 0;
+        if (stopterm == 1) {
+            CountDownTimer.cancel();
+            stopterm = 0;
+        }
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
     }
