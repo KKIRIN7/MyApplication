@@ -104,7 +104,7 @@ public class MeasurementTempoActivity extends AppCompatActivity {
             String back = IntervalSecond.getText().toString();
             String numbertime = NumberTime.getText().toString();
 
-            if (Int_NumberTime == 0 || Int_IntervalSecond == 0) {
+            if (Int_NumberTime == 0 || (Int_IntervalSecond == 0 && Int_IntervalMiniute == 0)) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("回数または、インターバルが0になっています");
                 builder.setMessage("0以外の数値を入力してください。");

@@ -161,7 +161,7 @@ public class TimerSetCountActivity extends AppCompatActivity {
                     String String_inputtrainname = Textview.getText().toString();
                     values.put("date", String_ymd);
                     values.put("trainname", String_inputtrainname);
-                    values.put("setnum", Int_DBsetsend);
+                    values.put("setnum", Int_DBsetsend + 1);
                     values.put("frequency", Int_NumberTime);
                     values.put("time", FirstTime);
                     db.insert("trainrecorddb", null, values);

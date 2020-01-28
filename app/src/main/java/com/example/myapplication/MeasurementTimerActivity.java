@@ -194,7 +194,7 @@ public class MeasurementTimerActivity extends AppCompatActivity {
                             int Int_TimerCountTimeSecond = Integer.parseInt(TimerCountTimeSecond.getText().toString());
 
 
-                            int FirstTime = Int_TimerCountTimeMiniute * 60 + Int_TimerCountTimeSecond;//画面が切り替わる際に元の値に戻す用
+                            int FirstTime = Maxmin * 60 + Maxsec;//画面が切り替わる際に元の値に戻す用
 
                             public void onTick(long millisUntilFinished) {
                                 int sparetime = (int) millisUntilFinished;//時間をカウントするための処理
@@ -247,7 +247,7 @@ public class MeasurementTimerActivity extends AppCompatActivity {
                                     String String_inputtrainname = Textview.getText().toString();
                                     values.put("date", String_ymd);
                                     values.put("trainname", String_inputtrainname);
-                                    values.put("setnum", Int_DBsetsend);
+                                    values.put("setnum", Int_DBsetsend + 1);
                                     values.put("time", FirstTime);
 
                                     db.insert("trainrecorddb", null, values);
