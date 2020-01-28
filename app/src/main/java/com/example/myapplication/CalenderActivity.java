@@ -94,7 +94,7 @@ public class CalenderActivity extends AppCompatActivity {
             sbuilder.append(cursor.getInt(1));
             sbuilder.append("セット  ");
             int judge = cursor.getInt(2);
-            if(judge == 0){
+            if(judge !=  0){
                 sbuilder.append(cursor.getInt(2));
                 sbuilder.append("回\n");
             }else {
@@ -113,11 +113,6 @@ public class CalenderActivity extends AppCompatActivity {
 
     public void onClick0(View v) {
         Intent intent = new Intent(this, MenuActivity.class);
-        startActivity(intent);
-    }
-
-    public void onClick1(View v) {
-        Intent intent = new Intent(this, DBActivity.class);
         startActivity(intent);
     }
 
@@ -149,17 +144,18 @@ public class CalenderActivity extends AppCompatActivity {
 
         for (int i = 0; i < cursor.getCount(); i++) {
             sbuilder.append(cursor.getString(0));
-            sbuilder.append(" ");
+            sbuilder.append("  ");
             sbuilder.append(cursor.getInt(1));
-            sbuilder.append("セット ");
+            sbuilder.append("セット  ");
             int judge = cursor.getInt(2);
-            if(judge == 0){
+            if(judge != 0){
                 sbuilder.append(cursor.getInt(2));
-                sbuilder.append("回 ");
+                sbuilder.append("回\n");
             }else {
                 sbuilder.append(cursor.getInt(3));
                 sbuilder.append("秒\n");
             }
+
             cursor.moveToNext();
         }
 
