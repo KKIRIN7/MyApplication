@@ -114,11 +114,11 @@ public class MeasurementTimerEndActivity extends AppCompatActivity {
                 null
         );
         cursor1.moveToFirst();
-        String trainday = cursor1.getString(0);
+        int judge = cursor1.getCount();
         cursor1.close();
         //ここまで日付の参照//
         //ここからポイントの追加を行う処理//
-        if (!trainday.equals(String_ymd)) {//今日とDB内の日付
+        if (judge == 1) {//今日とDB内の日付
 
             if ("29".equals(textview.getText().toString())) { //BDから帰ってきたポイントと29を比較（表示されている）
                 //DBのポイント数を０に
