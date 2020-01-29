@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyApplication</string>
+    <string name="app_name">筋トレナビ（仮）</string>
     <string name="hint_key">company</string>
     <string name="hint_value">US$price</string>
     <string name="insert">insert</string>
